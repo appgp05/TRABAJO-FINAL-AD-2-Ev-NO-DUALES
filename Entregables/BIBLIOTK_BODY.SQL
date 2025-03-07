@@ -20,7 +20,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         -- En caso de error, devolver '-1'
         WHEN OTHERS THEN
             RETURN '-1';
-    END;
+    END alta_obra;
 
     FUNCTION borrado_obra(
         p_id VARCHAR) 
@@ -44,7 +44,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         -- En caso de error, devolver '-1'
         WHEN OTHERS THEN
             RETURN '-1';
-    END;
+    END borrado_obra;
 
     FUNCTION alta_autor(
         p_nombre VARCHAR,
@@ -66,7 +66,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
     -- En caso de error, devolver '-1'
         WHEN OTHERS THEN
             RETURN '-1';
-    END;
+    END alta_autor;
 
     FUNCTION borrado_autor (
         p_id VARCHAR) 
@@ -91,7 +91,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         WHEN OTHERS THEN
             -- Si ocurre un error devolver -1
             RETURN -1;
-    END;
+    END borrado_autor;
 
     FUNCTION vincular (
         p_id_autor VARCHAR,
@@ -130,7 +130,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
     EXCEPTION
         WHEN OTHERS THEN
             RETURN -1; -- Error
-    END;
+    END vincular;
 
     FUNCTION desvincular(
         p_id_autor VARCHAR,
