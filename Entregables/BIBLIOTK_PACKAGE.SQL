@@ -1,0 +1,7 @@
+CREATE OR REPLACE PACKAGE BiblioTK AS
+    FUNCTION alta_obra(
+        p_titulo VARCHAR,
+        p_anyo INTEGER DEFAULT NULL) 
+    RETURN VARCHAR
+CREATE PACKAGE END;
+/

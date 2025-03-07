@@ -2,7 +2,9 @@
 -- EJERCICIO 1         (08)
 -- ########################
 
-CREATE OR REPLACE FUNCTION alta_obra(p_titulo VARCHAR, p_anyo INTEGER DEFAULT NULL) 
+CREATE OR REPLACE FUNCTION alta_obra(
+    p_titulo VARCHAR,
+    p_anyo INTEGER DEFAULT NULL) 
 RETURN VARCHAR IS
     v_id CHAR(5);
 BEGIN
@@ -11,7 +13,8 @@ BEGIN
     
     -- Insertar la nueva obra
 
-    INSERT INTO obra (id, titulo, anyo) VALUES (v_id, p_titulo, p_anyo); 
+    INSERT INTO obra (id, titulo, anyo)
+    VALUES (v_id, p_titulo, p_anyo); 
 
     -- Devolver el nuevo ID
     RETURN v_id;
@@ -38,7 +41,8 @@ END;
 -- EJERCICIO 2         (09)
 -- ########################
 
-CREATE OR REPLACE FUNCTION borrado_obra(p_id VARCHAR) 
+CREATE OR REPLACE FUNCTION borrado_obra(
+    p_id VARCHAR) 
 RETURN NUMBER IS
     v_count NUMBER;
 BEGIN
@@ -73,9 +77,9 @@ BEGIN
 END;
 /
 
--- ########################
+-- #########################
 -- EJERCICIO 3        (09.1)
--- ########################
+-- #########################
 
 CREATE TABLE historico_obra_auditado (
     id CHAR(5),
@@ -92,16 +96,18 @@ BEGIN
 END;
 /
 
--- ########################
+-- #######################
 -- EJERCICIO 4        (10)
--- ########################
+-- #######################
 
 CREATE OR REPLACE FUNCTION
-alta_autor(p_nombre VARCHAR, p_apellidos VARCHAR, p_nacimiento DATE DEFAULT NULL)
+alta_autor(
+    p_nombre VARCHAR,
+    p_apellidos VARCHAR,
+    p_nacimiento DATE DEFAULT NULL)
 RETURN VARCHAR IS
     v_id CHAR(4);
 BEGIN
-
     -- Generar un ID aleatorio de 4 carácteres en mayúsculas
     v_id := dbms_random.string('X', 4);
     
@@ -128,11 +134,12 @@ BEGIN
 END;
 /
 
--- ########################
+-- #######################
 -- EJERCICIO 5        (11)
--- ########################
+-- #######################
 
-CREATE OR REPLACE FUNCTION borrado_autor (p_id VARCHAR) 
+CREATE OR REPLACE FUNCTION borrado_autor (
+    p_id VARCHAR) 
 RETURN INTEGER IS
     v_count INTEGER; -- Variable para verificar si el autor existe
 BEGIN
@@ -154,7 +161,7 @@ EXCEPTION
     WHEN OTHERS THEN
         -- Si ocurre un error devolver -1
         RETURN -1;
-END borrado_autor;
+END;
 /
 
 DECLARE 
@@ -168,11 +175,13 @@ BEGIN
 END;
 /
 
--- ########################
+-- #######################
 -- EJERCICIO 6        (12)
--- ########################
+-- #######################
 
-CREATE OR REPLACE FUNCTION vincular (p_id_autor VARCHAR, p_id_obra VARCHAR)
+CREATE OR REPLACE FUNCTION vincular (
+    p_id_autor VARCHAR,
+    p_id_obra VARCHAR)
 RETURN INTEGER IS
     v_count_autor INTEGER;
     v_count_obra INTEGER;
@@ -207,7 +216,7 @@ BEGIN
 EXCEPTION
     WHEN OTHERS THEN
         RETURN -1; -- Error
-END vincular    ;
+END;
 /
 
 DECLARE 
@@ -219,23 +228,14 @@ BEGIN
 END;
 /
 
+-- ########################
+-- EJERCICIO 7         (13)
+-- ########################
 
-
-
-
-
-
-
-
-
-
-
-
--- 7
 CREATE OR REPLACE FUNCTION desvincular(
     p_id_autor VARCHAR,
-    p_id_obra VARCHAR
-) RETURN INTEGER IS
+    p_id_obra VARCHAR)
+RETURN INTEGER IS
     v_count_vinculo INTEGER;
 BEGIN
     -- Verificar si la relación existe en `autor_obra`
@@ -275,8 +275,13 @@ END;
 /
 
 
--- 8
-CREATE OR REPLACE FUNCTION alta_edicion(p_id_obra VARCHAR, p_isbn VARCHAR, p_anyo INTEGER DEFAULT NULL) 
+-- ########################
+-- EJERCICIO 7         (14)
+-- ########################
+CREATE OR REPLACE FUNCTION alta_edicion(
+    p_id_obra VARCHAR,
+    p_isbn VARCHAR,
+    p_anyo INTEGER DEFAULT NULL) 
 RETURN VARCHAR IS
     v_id_edicion CHAR(6);
     v_count INTEGER;
@@ -315,8 +320,10 @@ BEGIN
 END;
 /
 
+-- ########################
+-- EJERCICIO 8         (15)
+-- ########################
 
--- 9
 CREATE OR REPLACE FUNCTION borrado_edicion (p_id VARCHAR)
 RETURN INTEGER IS 
     v_count INTEGER;
@@ -351,8 +358,10 @@ BEGIN
 END;
 /
 
+-- ################################
+-- EJERCICIO 9         (16, 17, 18)
+-- ################################
 
--- 10
 CREATE OR REPLACE FUNCTION alta_ejemplar(p_id_edicion VARCHAR) 
 RETURN INTEGER IS
     v_max_numero INTEGER;
@@ -401,8 +410,10 @@ BEGIN
 END;
 /
 
+-- #####################################
+-- EJERCICIO 10         (19, 20, 21, 22)
+-- #####################################
 
--- 11
 CREATE OR REPLACE FUNCTION borrado_ejemplar (p_id_edicion VARCHAR, p_numero INTEGER)
 RETURN INTEGER IS 
     v_max_numero INTEGER;
@@ -466,9 +477,13 @@ BEGIN
 END;
 /
 
+-- #########################################
+-- EJERCICIO 11         (19, 23, 24, 25, 26)
+-- #########################################
 
--- 12
-CREATE OR REPLACE FUNCTION baja_ejemplar(p_id_edicion VARCHAR, p_numero INTEGER)
+CREATE OR REPLACE FUNCTION baja_ejemplar(
+    p_id_edicion VARCHAR,
+    p_numero INTEGER)
 RETURN INTEGER IS
     v_baja DATE;
     v_count INTEGER := 0;
