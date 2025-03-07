@@ -100,8 +100,7 @@ END;
 -- EJERCICIO 4        (10)
 -- #######################
 
-CREATE OR REPLACE FUNCTION
-alta_autor(
+CREATE OR REPLACE FUNCTION alta_autor(
     p_nombre VARCHAR,
     p_apellidos VARCHAR,
     p_nacimiento DATE DEFAULT NULL)
@@ -324,7 +323,8 @@ END;
 -- EJERCICIO 8         (15)
 -- ########################
 
-CREATE OR REPLACE FUNCTION borrado_edicion (p_id VARCHAR)
+CREATE OR REPLACE FUNCTION borrado_edicion (
+    p_id VARCHAR)
 RETURN INTEGER IS 
     v_count INTEGER;
 BEGIN
@@ -362,7 +362,8 @@ END;
 -- EJERCICIO 9         (16, 17, 18)
 -- ################################
 
-CREATE OR REPLACE FUNCTION alta_ejemplar(p_id_edicion VARCHAR) 
+CREATE OR REPLACE FUNCTION alta_ejemplar(
+    p_id_edicion VARCHAR) 
 RETURN INTEGER IS
     v_max_numero INTEGER;
     v_new_numero INTEGER;
@@ -414,7 +415,9 @@ END;
 -- EJERCICIO 10         (19, 20, 21, 22)
 -- #####################################
 
-CREATE OR REPLACE FUNCTION borrado_ejemplar (p_id_edicion VARCHAR, p_numero INTEGER)
+CREATE OR REPLACE FUNCTION borrado_ejemplar (
+    p_id_edicion VARCHAR,
+    p_numero INTEGER)
 RETURN INTEGER IS 
     v_max_numero INTEGER;
     v_alta DATE;
