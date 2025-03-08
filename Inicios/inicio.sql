@@ -64,15 +64,3 @@ CREATE TABLE ejemplar (
     CONSTRAINT FK_ejemplar FOREIGN KEY (id_edicion) REFERENCES edicion(id),
     CONSTRAINT NN_alta CHECK (alta IS NOT NULL)
 );
-
-DECLARE
-    id5 CHAR(5);
-    BEGIN
-    id5:= dbms_random.string('X', 5); -- insertar una obra
-    INSERT INTO obra (id, titulo) VALUES (id5, 'Cinco semanas en globo'); 
-END;
-/
-
-SELECT * FROM OBRA;
-
-SELECT * FROM ejemplar WHERE id_edicion = 'FSDPC7';
