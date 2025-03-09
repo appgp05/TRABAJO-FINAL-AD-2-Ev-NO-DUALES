@@ -304,11 +304,23 @@ DECLARE
     v_resultado VARCHAR(6);
 BEGIN
     -- Llamar a la función
-    v_resultado := apertura_prestamo('S0001', 'ED003', 1);
+    v_resultado := apertura_prestamo('S0002', 'ED002', 1);
 
     -- Mostrar el resultado
-    DBMS_OUTPUT.PUT_LINE('Número de ejemplar asignado: ' || v_resultado);
+    DBMS_OUTPUT.PUT_LINE('Prestamo abierto: ' || v_resultado);
 END;
 /
 
 -- EJERCICIO 16         (30)###################################################################################################
+DECLARE
+    v_resultado VARCHAR(6);
+BEGIN
+    -- Llamar a la función
+    v_resultado := cierre_prestamo('7XOZUK');
+
+    -- Mostrar el resultado
+    DBMS_OUTPUT.PUT_LINE('Prestamo cerrado: ' || v_resultado);
+END;
+/
+
+-- SELECT * FROM PRESTAMO;

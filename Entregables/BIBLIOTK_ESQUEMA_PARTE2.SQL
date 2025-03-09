@@ -116,7 +116,7 @@ BEGIN
     SELECT fecha_devolucion INTO v_fecha_devolucion FROM prestamo WHERE id = p_id_prestamo;
 
     -- Si el préstamo está cerrado
-    IF v_fecha_devolucion != null
+    IF v_fecha_devolucion IS NOT NULL
     THEN
         return '-1';
     END IF;
@@ -124,7 +124,7 @@ BEGIN
     -- Cerrar préstamo
     UPDATE prestamo
     SET fecha_devolucion = SYSDATE
-    WHERE id_prestamo = p_id_prestamo;
+    WHERE id = p_id_prestamo;
     
     RETURN 1;
     
