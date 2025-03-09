@@ -1,16 +1,25 @@
 CREATE OR REPLACE PACKAGE BODY BiblioTK IS
     -- EJERCICIO 1         (08)###################################################################################################
-   FUNCTION alta_obra(
+    FUNCTION alta_obra(
         p_titulo VARCHAR,
         p_anyo INTEGER DEFAULT NULL) 
     RETURN VARCHAR IS
         v_id CHAR(5);
+        v_count_id NUMBER;
     BEGIN
         -- Generar un ID aleatorio de 5 carácteres en mayúsculas
         v_id := dbms_random.string('X', 5);
+
+        -- Comprobar si ya existe el ID
+        SELECT COUNT(*) INTO v_count_id FROM obra WHERE id = v_id;
+
+        -- Si existe
+        IF v_count_id = 1
+        THEN
+            return -1;
+        END IF;
         
         -- Insertar la nueva obra
-
         INSERT INTO obra (id, titulo, anyo)
         VALUES (v_id, p_titulo, p_anyo); 
 
@@ -29,7 +38,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
     RETURN NUMBER IS
         v_count NUMBER;
     BEGIN
-        -- Verificar si la obra con el ID proporcio
+        -- Comprobar si existe la obra con el ID proporcionado
         SELECT COUNT(*) INTO v_count FROM OBRA WHERE id = p_id;
 
         -- Si no existe, 
@@ -55,9 +64,19 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         p_nacimiento DATE DEFAULT NULL)
     RETURN VARCHAR IS
         v_id CHAR(4);
+        v_count_id NUMBER;
     BEGIN
         -- Generar un ID aleatorio de 4 carácteres en mayúsculas
         v_id := dbms_random.string('X', 4);
+
+        -- Comprobar si ya existe el ID
+        SELECT COUNT(*) INTO v_count_id FROM autor WHERE id = v_id;
+
+        -- Si existe
+        IF v_count_id = 1
+        THEN
+            return -1;
+        END IF;
         
         -- Insertar el nuevo autor
         INSERT INTO autor (id, nombre, apellidos, nacimiento) VALUES (v_id, p_nombre, p_apellidos, p_nacimiento);
@@ -66,7 +85,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         RETURN v_id;
 
     EXCEPTION
-    -- En caso de error, devolver '-1'
+        -- En caso de error, devolver '-1'
         WHEN OTHERS THEN
             RETURN '-1';
     END alta_autor;

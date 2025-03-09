@@ -87,7 +87,29 @@ DECLARE
     v_nueva_obra_id VARCHAR(5); 
 BEGIN  
     -- Llamamos a la función y almacenamos el ID generado. La función inserta la nueva obra
-    v_nueva_obra_id := alta_obra('El Imperio Final', 2005);
+    v_nueva_obra_id := BiblioTK.alta_obra('El Imperio Final', 2005);
+    -- Mostramos el ID asignado en la salida estándar (Visible al activar el buffer)
+    DBMS_OUTPUT.PUT_LINE('ID Asignado: ' || v_nueva_obra_id);
+END;
+/
+
+DECLARE
+    -- Declaramos una variable para alamcenar el ID generado por la función alta_obra
+    v_nueva_obra_id VARCHAR(5); 
+BEGIN  
+    -- Llamamos a la función y almacenamos el ID generado. La función inserta la nueva obra
+    v_nueva_obra_id := BiblioTK.alta_obra('El Imperio Final', 2005);
+    -- Mostramos el ID asignado en la salida estándar (Visible al activar el buffer)
+    DBMS_OUTPUT.PUT_LINE('ID Asignado: ' || v_nueva_obra_id);
+END;
+/
+
+DECLARE
+    -- Declaramos una variable para alamcenar el ID generado por la función alta_obra
+    v_nueva_obra_id VARCHAR(5); 
+BEGIN  
+    -- Llamamos a la función y almacenamos el ID generado. La función inserta la nueva obra
+    v_nueva_obra_id := BiblioTK.alta_obra('El Imperio Final', 2005);
     -- Mostramos el ID asignado en la salida estándar (Visible al activar el buffer)
     DBMS_OUTPUT.PUT_LINE('ID Asignado: ' || v_nueva_obra_id);
 END;
@@ -97,8 +119,8 @@ END;
 DECLARE
     v_result INTEGER; -- Variable para almacenar el resultado de la función borrado_obra
 BEGIN
-    -- Intentar borrar una obra con ID '8OOKY'
-    v_result := borrado_obra('75URJ');
+    -- Intentar borrar una obra con un ID
+    v_result := BiblioTK.borrado_obra('8RU3A');
 
     -- Mostrar el resultado en la salida estándar
     DBMS_OUTPUT.PUT_LINE('Resultado: ' || v_result);
@@ -111,7 +133,7 @@ DECLARE
     v_nuevo_autor_id VARCHAR(4);
 BEGIN
     -- Llamamos a la funcion y creamos el nuevo autor
-    v_nuevo_autor_id := alta_autor('Brandon', 'Sanderson', TO_DATE('1975-12-19', 'YYYY-MM-DD'));
+    v_nuevo_autor_id := BiblioTK.alta_autor('Brandon', 'Sanderson', TO_DATE('1975-12-19', 'YYYY-MM-DD'));
     DBMS_OUTPUT.PUT_LINE('ID Asignado: ' || v_nuevo_autor_id);
 END;
 /
@@ -121,7 +143,7 @@ DECLARE
     v_result INTEGER; -- Variable para almacenar el resultado 
 BEGIN 
     -- Intentar borrar un autor 
-    v_result := borrado_autor('0AUP');
+    v_result := BiblioTK.borrado_autor('8888');
 
     -- Mostrar el resultado en la sálida estandar
     DBMS_OUTPUT.PUT_LINE('Resultado: ' || v_result);
@@ -133,7 +155,7 @@ DECLARE
     v_result INTEGER; 
 BEGIN
     -- autor / obra
-    v_result := vincular('IX9V', '8HT74');
+    v_result := BiblioTK.vincular('IX9V', '8HT74');
     DBMS_OUTPUT.PUT_LINE('Resultado: ' || v_result);
 END;
 /
@@ -142,7 +164,7 @@ END;
 DECLARE
     v_result INTEGER;
 BEGIN
-    v_result := desvincular('SOZC', 'O2KYG'); -- ID de un autor y una obra ya vinculados
+    v_result := BiblioTK.desvincular('SOZC', 'O2KYG'); -- ID de un autor y una obra ya vinculados
     DBMS_OUTPUT.PUT_LINE('Resultado: ' || v_result);
 END;
 /
@@ -155,7 +177,7 @@ DECLARE
     v_id_edicion VARCHAR(6);
 BEGIN
     -- Llamar a la función y almacenar el resultado
-    v_id_edicion := alta_edicion(v_id_obra, v_isbn, v_anyo);
+    v_id_edicion := BiblioTK.alta_edicion(v_id_obra, v_isbn, v_anyo);
 
     -- Mostrar el resultado
     DBMS_OUTPUT.PUT_LINE('ID Asignado: ' || v_id_edicion);
@@ -177,7 +199,7 @@ DECLARE
     v_resultado INTEGER;
 BEGIN
     -- Llamar a la función
-    v_resultado := alta_ejemplar(v_id_edicion);
+    v_resultado := BiblioTK.alta_ejemplar(v_id_edicion);
 
     -- Mostrar el resultado
     DBMS_OUTPUT.PUT_LINE('Número de ejemplar asignado: ' || v_resultado);
@@ -188,7 +210,7 @@ END;
 DECLARE 
     v_resultado INTEGER;
 BEGIN
-    v_resultado := borrado_ejemplar('ZHEKI4', 1);
+    v_resultado := BiblioTK.borrado_ejemplar('ZHEKI4', 1);
 
     IF v_resultado = 1 THEN
         DBMS_OUTPUT.PUT_LINE('Ejemplar borrado exitosamente.');
@@ -206,7 +228,7 @@ END;
 DECLARE
     v_resultado INTEGER;
 BEGIN
-    v_resultado := baja_ejemplar('ZHEKI4', 1);
+    v_resultado := BiblioTK.baja_ejemplar('ZHEKI4', 1);
 
     IF v_resultado = 1 THEN
         DBMS_OUTPUT.PUT_LINE('Baja efectuada correctamente.');

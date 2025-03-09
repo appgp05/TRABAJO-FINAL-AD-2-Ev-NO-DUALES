@@ -20,16 +20,6 @@ DROP TABLE edicion;
 DROP TABLE obra;
 DROP TABLE historico_obra_auditado;
 
--- autor;
--- -- obra;
--- autor_obra;
--- edicion;
--- ejemplar;
--- socio;
--- prestamo;
-
--- -- historico_obra_auditado;
-
 CREATE TABLE obra (
     id CHAR(5),
     titulo VARCHAR(100),
