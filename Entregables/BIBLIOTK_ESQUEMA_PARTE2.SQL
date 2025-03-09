@@ -57,12 +57,37 @@ CREATE OR REPLACE FUNCTION apertura_prestamo(
     p_id_ejemplar CHAR, 
     p_numero_ejemplar INTEGER
 ) RETURN CHAR IS
-    v_id_prestamo CHAR(6);
+    v_id CHAR(6);
+    v_count_id INTEGER;
+    v_count INTEGER;
 BEGIN
-    v_id_prestamo := dbms_random.string('X', 6);
-    INSERT INTO prestamo (id_prestamo, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo)
-    VALUES (v_id_prestamo, p_id_socio, p_id_ejemplar, p_numero_ejemplar, SYSDATE);
-    RETURN v_id_prestamo;
+    v_id := dbms_random.string('X', 6);
+
+    -- Comprobar si ya existe el ID
+    SELECT COUNT(*) INTO v_count_id FROM prestamo WHERE id = v_id;
+
+    -- Si existe
+    IF v_count_id = 1
+    THEN
+        return '-1';
+    END IF;
+
+    -- Comprobar si ya hay un prestamo sin cerrar de ese libro
+    SELECT COUNT(*) INTO v_count FROM prestamo WHERE id_ejemplar = p_id_ejemplar AND numero_ejemplar = p_numero_ejemplar AND fecha_devolucion IS NULL;
+
+    -- Si el ejemplar aún está en préstamo
+    IF v_count > 0
+    THEN
+        return '-1';
+    END IF;
+
+    -- Insertar el nuevo préstamo
+    INSERT INTO prestamo (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo)
+    VALUES (v_id, p_id_socio, p_id_ejemplar, p_numero_ejemplar, SYSDATE);
+
+    -- Devolver el nuevo ID
+    RETURN v_id;
+
 EXCEPTION
     WHEN OTHERS THEN
         RETURN '-1';
@@ -84,8 +109,11 @@ BEGIN
     ELSE
         RETURN 1;
     END IF;
+    
 EXCEPTION
     WHEN OTHERS THEN
         RETURN -1;
 END cierre_prestamo;
 /
+
+-- SELECT COUNT(*) FROM prestamo WHERE id_ejemplar = 'ED003' AND numero_ejemplar = 1 AND fecha_devolucion IS NULL;

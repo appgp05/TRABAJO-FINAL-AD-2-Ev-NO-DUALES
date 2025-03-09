@@ -2,6 +2,8 @@ También hay que hacer triggers de tablas como "historico_obra_auditado"?
 
 Las tablas del apartado opcional en qué fichero hay que declararlas?
 
+Las funciones de la operativa opcional van dentro del package o en bibliotk_esquema_parte2?
+
 Hace falta que las pruebas de borrados y actualizaciones sean automáticas con ids ya existentes?
 
 

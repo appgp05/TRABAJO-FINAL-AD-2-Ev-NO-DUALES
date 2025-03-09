@@ -76,6 +76,63 @@ BEGIN
 END;
 /
 
+-- ########################
+-- INSERTS PARA TABLAS
+-- ########################
+
+INSERT INTO obra (id, titulo, anyo) VALUES ('OB001', 'El Imperio Final', 2005);
+INSERT INTO obra (id, titulo, anyo) VALUES ('OB002', 'La Rueda del Tiempo', 1990);
+INSERT INTO obra (id, titulo, anyo) VALUES ('OB003', 'Cien Años de Soledad', 1967);
+
+INSERT INTO autor (id, nombre, apellidos, nacimiento) 
+VALUES ('A001', 'Gabriel', 'García Márquez', DATE '1927-03-06');
+
+INSERT INTO autor (id, nombre, apellidos, nacimiento) 
+VALUES ('A002', 'Isabel', 'Allende', DATE '1942-08-02');
+
+INSERT INTO autor (id, nombre, apellidos, nacimiento) 
+VALUES ('A003', 'Jorge', 'Luis Borges', DATE '1899-08-24');
+
+INSERT INTO autor_obra (id_autor, id_obra) VALUES ('A001', 'OB001');
+INSERT INTO autor_obra (id_autor, id_obra) VALUES ('A002', 'OB002');
+INSERT INTO autor_obra (id_autor, id_obra) VALUES ('A003', 'OB003');
+
+INSERT INTO edicion (id, id_obra, isbn, anyo) 
+VALUES ('ED001', 'OB001', '9783161484100', 2005);
+
+INSERT INTO edicion (id, id_obra, isbn, anyo) 
+VALUES ('ED002', 'OB002', '9781234567897', 1990);
+
+INSERT INTO edicion (id, id_obra, isbn, anyo) 
+VALUES ('ED003', 'OB003', '9780987654321', 1967);
+
+INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
+VALUES ('ED001', 1, SYSDATE, NULL);
+
+INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
+VALUES ('ED002', 1, SYSDATE, NULL);
+
+INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
+VALUES ('ED003', 1, SYSDATE, NULL);
+
+INSERT INTO socio (id, nombre, apellidos) 
+VALUES ('S0001', 'Carlos', 'Pérez Gómez');
+
+INSERT INTO socio (id, nombre, apellidos) 
+VALUES ('S0002', 'Ana', 'Martínez Ruiz');
+
+INSERT INTO socio (id, nombre, apellidos) 
+VALUES ('S0003', 'Luis', 'Gómez López');
+
+INSERT INTO prestamo (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo, fecha_devolucion) 
+VALUES ('P00001', 'S0001', 'ED001', 1, SYSDATE, SYSDATE-7);
+
+INSERT INTO prestamo (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo, fecha_devolucion) 
+VALUES ('P00002', 'S0002', 'ED002', 1, SYSDATE, SYSDATE-14);
+
+INSERT INTO prestamo (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo, fecha_devolucion) 
+VALUES ('P00003', 'S0003', 'ED003', 1, SYSDATE, null);
+
 
 -- ########################
 -- BATERIA DE PRUEBAS
@@ -241,3 +298,17 @@ BEGIN
     END IF;
 END;
 /
+
+-- EJERCICIO 15         (29)###################################################################################################
+DECLARE
+    v_resultado VARCHAR(6);
+BEGIN
+    -- Llamar a la función
+    v_resultado := apertura_prestamo('S0001', 'ED003', 1);
+
+    -- Mostrar el resultado
+    DBMS_OUTPUT.PUT_LINE('Número de ejemplar asignado: ' || v_resultado);
+END;
+/
+
+-- EJERCICIO 16         (30)###################################################################################################
