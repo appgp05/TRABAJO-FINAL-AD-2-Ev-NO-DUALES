@@ -188,14 +188,14 @@ END;
 DECLARE
     v_result INTEGER;
 BEGIN
-    v_result := borrado_edicion('QX86JR');
+    v_result := BiblioTK.borrado_edicion('XLYRAH');
     DBMS_OUTPUT.PUT_LINE('Resultado: ' || v_result);
 END;
 /
 
 -- EJERCICIO 10         (16, 17, 18)###################################################################################################
 DECLARE
-    v_id_edicion VARCHAR(10) := 'ZHEKI4';
+    v_id_edicion VARCHAR(10) := 'YRN4ZC';
     v_resultado INTEGER;
 BEGIN
     -- Llamar a la función
@@ -210,7 +210,7 @@ END;
 DECLARE 
     v_resultado INTEGER;
 BEGIN
-    v_resultado := BiblioTK.borrado_ejemplar('ZHEKI4', 1);
+    v_resultado := BiblioTK.borrado_ejemplar('YRN4ZC', 3);
 
     IF v_resultado = 1 THEN
         DBMS_OUTPUT.PUT_LINE('Ejemplar borrado exitosamente.');

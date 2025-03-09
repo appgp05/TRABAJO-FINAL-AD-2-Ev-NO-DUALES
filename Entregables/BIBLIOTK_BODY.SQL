@@ -259,14 +259,14 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
     RETURN INTEGER IS
         v_max_numero INTEGER;
         v_new_numero INTEGER;
-        v_count INTEGER;
+        v_count_edicion INTEGER;
     BEGIN
-        -- Comprobar si la edición ya existe
-        SELECT COUNT(*) INTO v_count
+        -- Comprobar si la edición existe
+        SELECT COUNT(*) INTO v_count_edicion
         FROM edicion
         WHERE id = p_id_edicion;
 
-        IF v_count = 0 THEN
+        IF v_count_edicion = 0 THEN
             RETURN -1;  -- Retorna -1 si la edición no existe
         END IF;
 
