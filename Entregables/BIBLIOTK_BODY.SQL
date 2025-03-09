@@ -5,7 +5,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         p_anyo INTEGER DEFAULT NULL) 
     RETURN VARCHAR IS
         v_id CHAR(5);
-        v_count_id NUMBER;
+        v_count_id INTEGER;
     BEGIN
         -- Generar un ID aleatorio de 5 carácteres en mayúsculas
         v_id := dbms_random.string('X', 5);
@@ -35,8 +35,8 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
     -- EJERCICIO 2         (09)###################################################################################################
     FUNCTION borrado_obra(
         p_id VARCHAR) 
-    RETURN NUMBER IS
-        v_count NUMBER;
+    RETURN INTEGER IS
+        v_count INTEGER;
     BEGIN
         -- Comprobar si existe la obra con el ID proporcionado
         SELECT COUNT(*) INTO v_count FROM OBRA WHERE id = p_id;
@@ -64,7 +64,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         p_nacimiento DATE DEFAULT NULL)
     RETURN VARCHAR IS
         v_id CHAR(4);
-        v_count_id NUMBER;
+        v_count_id INTEGER;
     BEGIN
         -- Generar un ID aleatorio de 4 carácteres en mayúsculas
         v_id := dbms_random.string('X', 4);

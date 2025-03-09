@@ -8,7 +8,7 @@ CREATE OR REPLACE PACKAGE BiblioTK AS
     -- EJERCICIO 2         (09)
     FUNCTION borrado_obra(
         p_id VARCHAR) 
-    RETURN NUMBER;
+    RETURN INTEGER;
 
     -- EJERCICIO 4        (10)
     FUNCTION alta_autor(

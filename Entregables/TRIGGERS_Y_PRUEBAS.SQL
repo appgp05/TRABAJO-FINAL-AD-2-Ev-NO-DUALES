@@ -120,7 +120,7 @@ DECLARE
     v_result INTEGER; -- Variable para almacenar el resultado de la función borrado_obra
 BEGIN
     -- Intentar borrar una obra con un ID
-    v_result := BiblioTK.borrado_obra('8RU3A');
+    v_result := BiblioTK.borrado_obra('OQJYV');
 
     -- Mostrar el resultado en la salida estándar
     DBMS_OUTPUT.PUT_LINE('Resultado: ' || v_result);
@@ -228,7 +228,7 @@ END;
 DECLARE
     v_resultado INTEGER;
 BEGIN
-    v_resultado := BiblioTK.baja_ejemplar('ZHEKI4', 1);
+    v_resultado := BiblioTK.baja_ejemplar('YRN4ZC', 5);
 
     IF v_resultado = 1 THEN
         DBMS_OUTPUT.PUT_LINE('Baja efectuada correctamente.');
