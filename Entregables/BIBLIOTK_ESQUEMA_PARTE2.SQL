@@ -47,8 +47,6 @@ CREATE TABLE prestamo (
     CONSTRAINT FK_prestamo_id_ejemplar FOREIGN KEY (id_ejemplar, numero_ejemplar) REFERENCES ejemplar(id_edicion, numero)
 );
 
-
-
 -- #########################################
 -- EJERCICIO 15         (29)
 -- #########################################

@@ -8,10 +8,6 @@ Hace falta que las pruebas de borrados y actualizaciones sean automáticas con i
 
 
 
-CAMBIAR NUMBERS POR INTEGERS
-
-OPCIONAL: DEJAR TODAS LAS PRUEBAS IGUALES EN ESTRUCTURA
-
 
 
 
