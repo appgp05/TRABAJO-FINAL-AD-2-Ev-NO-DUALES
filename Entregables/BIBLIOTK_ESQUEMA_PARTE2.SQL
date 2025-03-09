@@ -57,7 +57,9 @@ CREATE OR REPLACE FUNCTION apertura_prestamo(
 ) RETURN CHAR IS
     v_id CHAR(6);
     v_count_id INTEGER;
-    v_count INTEGER;
+    v_count_prestamo INTEGER;
+    v_count_socio INTEGER;
+    v_count_ejemplar INTEGER;
 BEGIN
     v_id := dbms_random.string('X', 6);
 
@@ -71,10 +73,28 @@ BEGIN
     END IF;
 
     -- Comprobar si ya hay un prestamo sin cerrar de ese libro
-    SELECT COUNT(*) INTO v_count FROM prestamo WHERE id_ejemplar = p_id_ejemplar AND numero_ejemplar = p_numero_ejemplar AND fecha_devolucion IS NULL;
+    SELECT COUNT(*) INTO v_count_prestamo FROM prestamo WHERE id_ejemplar = p_id_ejemplar AND numero_ejemplar = p_numero_ejemplar AND fecha_devolucion IS NULL;
 
     -- Si el ejemplar aún está en préstamo
-    IF v_count > 0
+    IF v_count_prestamo > 0
+    THEN
+        return '-1';
+    END IF;
+
+    -- Comprobar si existe el socio
+    SELECT COUNT(*) INTO v_count_socio FROM socio WHERE id = p_id_socio;
+
+    -- Si el ejemplar aún está en préstamo
+    IF v_count_socio = 0
+    THEN
+        return '-1';
+    END IF;
+
+    -- Comprobar si existe el ejemplar
+    SELECT COUNT(*) INTO v_count_ejemplar FROM ejemplar WHERE id_edicion = p_id_ejemplar AND numero = p_numero_ejemplar;
+
+    -- Si el ejemplar aún está en préstamo
+    IF v_count_ejemplar = 0
     THEN
         return '-1';
     END IF;
@@ -128,6 +148,6 @@ BEGIN
     
 EXCEPTION
     WHEN OTHERS THEN
-        RETURN -1;
+        RETURN '-1';
 END cierre_prestamo;
 /

@@ -545,7 +545,7 @@ DECLARE
     v_resultado INTEGER;
 BEGIN
     -- Llamar a la función
-    v_resultado := BiblioTK.alta_ejemplar('ED0008');
+    v_resultado := BiblioTK.alta_ejemplar('ED0005');
 
     -- Mostrar el resultado
     DBMS_OUTPUT.PUT_LINE('Número de ejemplar asignado: ' || v_resultado);
@@ -556,7 +556,7 @@ DECLARE
     v_resultado INTEGER;
 BEGIN
     -- Llamar a la función
-    v_resultado := BiblioTK.alta_ejemplar('ED0008');
+    v_resultado := BiblioTK.alta_ejemplar('ED0005');
 
     -- Mostrar el resultado
     DBMS_OUTPUT.PUT_LINE('Número de ejemplar asignado: ' || v_resultado);
@@ -735,6 +735,28 @@ DECLARE
     v_resultado VARCHAR(6);
 BEGIN
     -- Llamar a la función
+    v_resultado := apertura_prestamo('S0000', 'ED0001', 1);
+
+    -- Mostrar el resultado
+    DBMS_OUTPUT.PUT_LINE('Prestamo abierto: ' || v_resultado);
+END;
+/
+
+DECLARE
+    v_resultado VARCHAR(6);
+BEGIN
+    -- Llamar a la función
+    v_resultado := apertura_prestamo('S0001', 'ED0000', 1);
+
+    -- Mostrar el resultado
+    DBMS_OUTPUT.PUT_LINE('Prestamo abierto: ' || v_resultado);
+END;
+/
+
+DECLARE
+    v_resultado VARCHAR(6);
+BEGIN
+    -- Llamar a la función
     v_resultado := apertura_prestamo('S0001', 'ED0002', 1);
 
     -- Mostrar el resultado
@@ -768,6 +790,17 @@ SELECT * FROM prestamo;
 
 -- EJERCICIO 16         (30)###################################################################################################
 SELECT * FROM prestamo;
+
+DECLARE
+    v_resultado VARCHAR(6);
+BEGIN
+    -- Llamar a la función
+    v_resultado := cierre_prestamo('P00000');
+
+    -- Mostrar el resultado
+    DBMS_OUTPUT.PUT_LINE('Prestamo cerrado: ' || v_resultado);
+END;
+/
 
 DECLARE
     v_resultado VARCHAR(6);
