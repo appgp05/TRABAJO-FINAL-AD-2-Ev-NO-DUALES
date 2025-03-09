@@ -133,5 +133,3 @@ EXCEPTION
         RETURN -1;
 END cierre_prestamo;
 /
-
--- SELECT COUNT(*) FROM prestamo WHERE id_ejemplar = 'ED003' AND numero_ejemplar = 1 AND fecha_devolucion IS NULL;
