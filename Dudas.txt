@@ -2,4 +2,12 @@ También hay que hacer triggers de tablas como "historico_obra_auditado"?
 
 Las tablas del apartado opcional en qué fichero hay que declararlas?
 
+
+
+
 COMPROBAR LOS EJERCICIOS 6 y 7
+
+
+CAMBIAR INTEGERS POR NUMBERS
+
+OPCIONAL: DEJAR TODAS LAS PRUEBAS IGUALES EN ESTRUCTURA

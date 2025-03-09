@@ -155,7 +155,7 @@ DECLARE
     v_result INTEGER; 
 BEGIN
     -- autor / obra
-    v_result := BiblioTK.vincular('IX9V', '8HT74');
+    v_result := BiblioTK.vincular('6ULH', 'NZIXI');
     DBMS_OUTPUT.PUT_LINE('Resultado: ' || v_result);
 END;
 /
@@ -164,14 +164,14 @@ END;
 DECLARE
     v_result INTEGER;
 BEGIN
-    v_result := BiblioTK.desvincular('SOZC', 'O2KYG'); -- ID de un autor y una obra ya vinculados
+    v_result := BiblioTK.desvincular('6ULH', 'NZIXR'); -- ID de un autor y una obra ya vinculados
     DBMS_OUTPUT.PUT_LINE('Resultado: ' || v_result);
 END;
 /
 
 -- EJERCICIO 8         (14)###################################################################################################
 DECLARE
-    v_id_obra VARCHAR(5) := 'O2KYG';
+    v_id_obra VARCHAR(5) := 'NZIXR';
     v_isbn VARCHAR(20) := '978-3-16-148410-0';
     v_anyo INTEGER := 2025; 
     v_id_edicion VARCHAR(6);

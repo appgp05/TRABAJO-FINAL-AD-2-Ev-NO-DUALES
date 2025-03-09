@@ -54,7 +54,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
     EXCEPTION
         -- En caso de error, devolver '-1'
         WHEN OTHERS THEN
-            RETURN '-1';
+            RETURN -1;
     END borrado_obra;
 
     -- EJERCICIO 4        (10)###################################################################################################
@@ -176,17 +176,17 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         DELETE FROM autor_obra 
         WHERE id_autor = p_id_autor AND id_obra = p_id_obra;
 
-        -- Verificar si se realizó la eliminación
-        IF SQL%ROWCOUNT > 0 THEN
-            COMMIT;
-            RETURN 1; -- Desvinculación exitosa
-        ELSE
-            RETURN 0; -- No se eliminó nada (caso raro)
-        END IF;
+        RETURN 1;
+        -- -- Verificar si se realizó la eliminación
+        -- IF SQL%ROWCOUNT > 0 THEN
+        --     COMMIT;
+        --     RETURN 1; -- Desvinculación exitosa
+        -- ELSE
+        --     RETURN 0; -- No se eliminó nada (caso raro)
+        -- END IF;
 
     EXCEPTION
         WHEN OTHERS THEN
-            ROLLBACK;
             RETURN -1; -- Error inesperado
     END desvincular;
 
@@ -196,23 +196,33 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         p_isbn VARCHAR,
         p_anyo INTEGER DEFAULT NULL) 
     RETURN VARCHAR IS
-        v_id_edicion CHAR(6);
-        v_count INTEGER;
+        v_id CHAR(6);
+        v_count_id INTEGER;
+        v_count_obra INTEGER;
     BEGIN
         -- Verificar que la obra existe
-        SELECT COUNT(*) INTO v_count FROM obra WHERE id = p_id_obra;
-        IF v_count = 0 THEN
-            RETURN '0';  -- Error: la obra no existe
+        SELECT COUNT(*) INTO v_count_obra FROM obra WHERE id = p_id_obra;
+        IF v_count_obra = 0 THEN
+            RETURN '-1';  -- Error: la obra no existe
         END IF;
 
-        -- Generar un nuevo ID único para la edición
-        v_id_edicion := dbms_random.string('X', 6);
+        -- Generar un ID aleatorio de 6 carácteres en mayúsculas
+        v_id := dbms_random.string('X', 6);
+
+        -- Comprobar si ya existe el ID
+        SELECT COUNT(*) INTO v_count_id FROM obra WHERE id = v_id;
+
+        -- Si existe
+        IF v_count_id = 1
+        THEN
+            return '-1';
+        END IF;
 
         -- Insertar la nueva edición
         INSERT INTO edicion (id, id_obra, isbn, anyo)
-        VALUES (v_id_edicion, p_id_obra, p_isbn, p_anyo);
+        VALUES (v_id, p_id_obra, p_isbn, p_anyo);
 
-        RETURN v_id_edicion;
+        RETURN v_id;
     EXCEPTION
         WHEN OTHERS THEN
             RETURN '-1';  -- En caso de cualquier error
@@ -236,12 +246,10 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         DELETE FROM edicion WHERE id = p_id;
 
         -- Devolver 1 indicando que la obra fue eliminada correctamente y guardar cambios
-        COMMIT;
         RETURN 1;
 
     EXCEPTION
         WHEN OTHERS THEN
-            ROLLBACK;
             RETURN -1;
     END borrado_edicion;
 
@@ -322,11 +330,9 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         WHERE id_edicion = p_id_edicion AND numero = p_numero;
 
         -- Devolver 1 indicando que el ejemplar fue eliminado correctamente y guardar cambios
-        COMMIT;
         RETURN 1;
     EXCEPTION
         WHEN OTHERS THEN
-            ROLLBACK;
             RETURN -2; -- Error inesperado
     END borrado_ejemplar;
 
