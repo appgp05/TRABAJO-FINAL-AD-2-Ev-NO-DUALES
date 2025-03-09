@@ -100,15 +100,33 @@ END apertura_prestamo;
 CREATE OR REPLACE FUNCTION cierre_prestamo(
     p_id_prestamo CHAR
 ) RETURN INTEGER IS
+    v_count INTEGER;
+    v_fecha_devolucion DATE;
 BEGIN
+    -- Comprobar que el préstamo existe
+    SELECT COUNT(*) INTO v_count FROM prestamo WHERE id = p_id_prestamo;
+
+    -- Si el préstamo no existe
+    IF v_count = 0
+    THEN
+        return '0';
+    END IF;
+
+    -- Comprobar que el préstamo no está cerrado
+    SELECT fecha_devolucion INTO v_fecha_devolucion FROM prestamo WHERE id = p_id_prestamo;
+
+    -- Si el préstamo está cerrado
+    IF v_fecha_devolucion != null
+    THEN
+        return '-1';
+    END IF;
+
+    -- Cerrar préstamo
     UPDATE prestamo
     SET fecha_devolucion = SYSDATE
-    WHERE id_prestamo = p_id_prestamo AND fecha_devolucion IS NULL;
-    IF SQL%ROWCOUNT = 0 THEN
-        RETURN 0;
-    ELSE
-        RETURN 1;
-    END IF;
+    WHERE id_prestamo = p_id_prestamo;
+    
+    RETURN 1;
     
 EXCEPTION
     WHEN OTHERS THEN
