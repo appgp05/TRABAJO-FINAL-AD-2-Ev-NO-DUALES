@@ -3,7 +3,6 @@
 -- #########################
 -- EJERCICIO 3        (09.1)
 -- #########################
-
 CREATE TABLE historico_obra_auditado (
     id CHAR(5),
     titulo VARCHAR(100),
@@ -14,7 +13,6 @@ CREATE TABLE historico_obra_auditado (
 -- #########################################
 -- EJERCICIO 13         (27)
 -- #########################################
-
 CREATE TABLE socio (
     id_socio CHAR(5) PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
@@ -24,7 +22,6 @@ CREATE TABLE socio (
 -- #########################################
 -- EJERCICIO 14         (28)
 -- #########################################
-
 CREATE TABLE prestamo (
     id_prestamo CHAR(6) PRIMARY KEY,
     id_socio CHAR(5) NOT NULL,
@@ -41,7 +38,6 @@ CREATE TABLE prestamo (
 -- #########################################
 -- EJERCICIO 15         (29)
 -- #########################################
-
 CREATE OR REPLACE FUNCTION apertura_prestamo(
     p_id_socio CHAR, 
     p_id_ejemplar CHAR, 
@@ -62,7 +58,6 @@ END apertura_prestamo;
 -- #########################################
 -- EJERCICIO 16         (30)
 -- #########################################
-
 CREATE OR REPLACE FUNCTION cierre_prestamo(
     p_id_prestamo CHAR
 ) RETURN INTEGER IS

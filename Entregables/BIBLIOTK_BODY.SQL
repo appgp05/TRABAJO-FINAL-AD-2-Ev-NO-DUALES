@@ -1,4 +1,5 @@
 CREATE OR REPLACE PACKAGE BODY BiblioTK IS
+    -- EJERCICIO 1         (08)###################################################################################################
    FUNCTION alta_obra(
         p_titulo VARCHAR,
         p_anyo INTEGER DEFAULT NULL) 
@@ -22,6 +23,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
             RETURN '-1';
     END alta_obra;
 
+    -- EJERCICIO 2         (09)###################################################################################################
     FUNCTION borrado_obra(
         p_id VARCHAR) 
     RETURN NUMBER IS
@@ -46,6 +48,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
             RETURN '-1';
     END borrado_obra;
 
+    -- EJERCICIO 4        (10)###################################################################################################
     FUNCTION alta_autor(
         p_nombre VARCHAR,
         p_apellidos VARCHAR,
@@ -68,6 +71,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
             RETURN '-1';
     END alta_autor;
 
+    -- EJERCICIO 5        (11)###################################################################################################
     FUNCTION borrado_autor (
         p_id VARCHAR) 
     RETURN INTEGER IS
@@ -93,6 +97,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
             RETURN -1;
     END borrado_autor;
 
+    -- EJERCICIO 6        (12)###################################################################################################
     FUNCTION vincular (
         p_id_autor VARCHAR,
         p_id_obra VARCHAR)
@@ -132,6 +137,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
             RETURN -1; -- Error
     END vincular;
 
+    -- EJERCICIO 7         (13)###################################################################################################
     FUNCTION desvincular(
         p_id_autor VARCHAR,
         p_id_obra VARCHAR)
@@ -165,6 +171,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
             RETURN -1; -- Error inesperado
     END desvincular;
 
+    -- EJERCICIO 8         (14)###################################################################################################
     FUNCTION alta_edicion(
         p_id_obra VARCHAR,
         p_isbn VARCHAR,
@@ -192,6 +199,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
             RETURN '-1';  -- En caso de cualquier error
     END alta_edicion;
 
+    -- EJERCICIO 9         (15)###################################################################################################
     FUNCTION borrado_edicion (
         p_id VARCHAR)
     RETURN INTEGER IS 
@@ -218,6 +226,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
             RETURN -1;
     END borrado_edicion;
 
+    -- EJERCICIO 10         (16, 17, 18)###################################################################################################
     FUNCTION alta_ejemplar(
         p_id_edicion VARCHAR) 
     RETURN INTEGER IS
@@ -254,6 +263,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
             RETURN -2;  -- Devuelve -2 si ocurre un error inesperado
     END alta_ejemplar;
 
+    -- EJERCICIO 11         (19, 20, 21, 22)###################################################################################################
     FUNCTION borrado_ejemplar (
         p_id_edicion VARCHAR,
         p_numero INTEGER)
@@ -301,6 +311,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
             RETURN -2; -- Error inesperado
     END borrado_ejemplar;
 
+    -- EJERCICIO 12         (19, 23, 24, 25, 26)###################################################################################################
     FUNCTION baja_ejemplar(
         p_id_edicion VARCHAR,
         p_numero INTEGER)

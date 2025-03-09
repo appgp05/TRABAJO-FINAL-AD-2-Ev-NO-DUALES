@@ -11,12 +11,24 @@ LOLO
 
 SET SERVEROUTPUT ON;
 
-DROP TABLE AUTOR_OBRA;
-DROP TABLE AUTOR;
-DROP TABLE EJEMPlAR;
-DROP TABLE EDICION;
-DROP TABLE OBRA;
+DROP TABLE autor_obra;
+DROP TABLE autor;
+DROP TABLE prestamo;
+DROP TABLE socio;
+DROP TABLE ejemplar;
+DROP TABLE edicion;
+DROP TABLE obra;
+DROP TABLE historico_obra_auditado;
 
+-- autor;
+-- -- obra;
+-- autor_obra;
+-- edicion;
+-- ejemplar;
+-- socio;
+-- prestamo;
+
+-- -- historico_obra_auditado;
 
 CREATE TABLE obra (
     id CHAR(5),

@@ -1,7 +1,87 @@
+-- ########################
+-- TRIGGERS
+-- ########################
+
+-- EJERCICIO 3        (09.1)###################################################################################################
+CREATE OR REPLACE TRIGGER auditar_borrado_obra
+BEFORE DELETE ON obra
+FOR EACH ROW
+BEGIN
+    INSERT INTO historico_obra_auditado VALUES(:OLD.id, :OLD.titulo, :OLD.anyo, SYSTIMESTAMP);
+END;
+/
+
+-- EJERCICIO 16         (30)###################################################################################################
+CREATE OR REPLACE TRIGGER auditar_borrado_autor
+BEFORE DELETE ON autor
+FOR EACH ROW
+BEGIN
+    --CODIGO
+END;
+/
+
+CREATE OR REPLACE TRIGGER auditar_borrado_autor_obra
+BEFORE DELETE ON autor_obra
+FOR EACH ROW
+BEGIN
+    --CODIGO
+END;
+/
+
+CREATE OR REPLACE TRIGGER auditar_borrado_edicion
+BEFORE DELETE ON edicion
+FOR EACH ROW
+BEGIN
+    --CODIGO
+END;
+/
+
+CREATE OR REPLACE TRIGGER auditar_borrado_ejemplar
+BEFORE DELETE ON ejemplar
+FOR EACH ROW
+BEGIN
+    --CODIGO
+END;
+/
+
+CREATE OR REPLACE TRIGGER auditar_borrado_socio;
+BEFORE DELETE ON socio;
+FOR EACH ROW
+BEGIN
+    --CODIGO
+END;
+/
+
+CREATE OR REPLACE TRIGGER auditar_borrado_prestamo;
+BEFORE DELETE ON prestamo;
+FOR EACH ROW
+BEGIN
+    --CODIGO
+END;
+/
+
+CREATE OR REPLACE TRIGGER auditar_borrado_
+BEFORE DELETE ON --NOMBRE TABLA
+FOR EACH ROW
+BEGIN
+    --CODIGO
+END;
+/
+
+CREATE OR REPLACE TRIGGER auditar_borrado_
+BEFORE DELETE ON --NOMBRE TABLA
+FOR EACH ROW
+BEGIN
+    --CODIGO
+END;
+/
+
 
 -- ########################
--- EJERCICIO 1         (08)
+-- BATERIA DE PRUEBAS
 -- ########################
+
+-- EJERCICIO 1         (08)###################################################################################################
 DECLARE
     -- Declaramos una variable para alamcenar el ID generado por la función alta_obra
     v_nueva_obra_id VARCHAR(5); 
@@ -13,9 +93,7 @@ BEGIN
 END;
 /
 
--- ########################
--- EJERCICIO 2         (09)
--- ########################
+-- EJERCICIO 2         (09)###################################################################################################
 DECLARE
     v_result INTEGER; -- Variable para almacenar el resultado de la función borrado_obra
 BEGIN
@@ -27,20 +105,7 @@ BEGIN
 END;
 /
 
--- #########################
--- EJERCICIO 3        (09.1)
--- #########################
-CREATE OR REPLACE TRIGGER auditar_borrado_obra
-BEFORE DELETE ON obra
-FOR EACH ROW
-BEGIN
-    INSERT INTO historico_obra_auditado VALUES(:OLD.id, :OLD.titulo, :OLD.anyo, SYSTIMESTAMP);
-END;
-/
-
--- #######################
--- EJERCICIO 4        (10)
--- #######################
+-- EJERCICIO 4        (10)###################################################################################################
 DECLARE 
     -- Declaramos una variable para alamcenar el ID
     v_nuevo_autor_id VARCHAR(4);
@@ -51,9 +116,7 @@ BEGIN
 END;
 /
 
--- #######################
--- EJERCICIO 5        (11)
--- #######################
+-- EJERCICIO 5        (11)###################################################################################################
 DECLARE 
     v_result INTEGER; -- Variable para almacenar el resultado 
 BEGIN 
@@ -65,9 +128,7 @@ BEGIN
 END;
 /
 
--- #######################
--- EJERCICIO 6        (12)
--- #######################
+-- EJERCICIO 6        (12)###################################################################################################
 DECLARE 
     v_result INTEGER; 
 BEGIN
@@ -77,9 +138,7 @@ BEGIN
 END;
 /
 
--- ########################
--- EJERCICIO 7         (13)
--- ########################
+-- EJERCICIO 7         (13)###################################################################################################
 DECLARE
     v_result INTEGER;
 BEGIN
@@ -88,9 +147,7 @@ BEGIN
 END;
 /
 
--- ########################
--- EJERCICIO 8         (14)
--- ########################
+-- EJERCICIO 8         (14)###################################################################################################
 DECLARE
     v_id_obra VARCHAR(5) := 'O2KYG';
     v_isbn VARCHAR(20) := '978-3-16-148410-0';
@@ -105,9 +162,7 @@ BEGIN
 END;
 /
 
--- ########################
--- EJERCICIO 9         (15)
--- ########################
+-- EJERCICIO 9         (15)###################################################################################################
 DECLARE
     v_result INTEGER;
 BEGIN
@@ -116,9 +171,7 @@ BEGIN
 END;
 /
 
--- #################################
--- EJERCICIO 10         (16, 17, 18)
--- #################################
+-- EJERCICIO 10         (16, 17, 18)###################################################################################################
 DECLARE
     v_id_edicion VARCHAR(10) := 'ZHEKI4';
     v_resultado INTEGER;
@@ -131,9 +184,7 @@ BEGIN
 END;
 /
 
--- #####################################
--- EJERCICIO 11         (19, 20, 21, 22)
--- #####################################
+-- EJERCICIO 11         (19, 20, 21, 22)###################################################################################################
 DECLARE 
     v_resultado INTEGER;
 BEGIN
@@ -151,9 +202,7 @@ BEGIN
 END;
 /
 
--- #########################################
--- EJERCICIO 12         (19, 23, 24, 25, 26)
--- #########################################
+-- EJERCICIO 12         (19, 23, 24, 25, 26)###################################################################################################
 DECLARE
     v_resultado INTEGER;
 BEGIN
