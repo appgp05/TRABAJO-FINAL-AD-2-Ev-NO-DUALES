@@ -236,7 +236,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
     BEGIN
         -- Verificar si la edición existe
         SELECT COUNT(*) INTO v_count FROM edicion WHERE id = p_id;
-
+        
         -- Si no existe devolver 0
         IF v_count = 0 THEN
             RETURN 0;

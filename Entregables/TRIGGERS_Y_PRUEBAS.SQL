@@ -116,68 +116,82 @@ INSERT INTO autor_obra (id_autor, id_obra) VALUES ('A002', 'OB005');
 -- TABLA EDICION
 -- Para OB001: 2 ediciones
 INSERT INTO edicion (id, id_obra, isbn, anyo) 
-VALUES ('ED001', 'OB001', '9783161484100', 2005);
+VALUES ('ED0001', 'OB001', '978-3-16-148410-0', 2005);
 INSERT INTO edicion (id, id_obra, isbn, anyo) 
-VALUES ('ED004', 'OB001', '9783161484117', 2006);
+VALUES ('ED0004', 'OB001', '97-8-31-6148411-7', 2006);
 
 -- Para OB002: 1 edición
 INSERT INTO edicion (id, id_obra, isbn, anyo) 
-VALUES ('ED002', 'OB002', '9781234567897', 1990);
+VALUES ('ED0002', 'OB002', '978-1-23-456789-7', 1990);
 
 -- Para OB003: 2 ediciones
 INSERT INTO edicion (id, id_obra, isbn, anyo) 
-VALUES ('ED003', 'OB003', '9780987654321', 1967);
+VALUES ('ED0003', 'OB003', '978-0-98-765432-1', 1967);
 INSERT INTO edicion (id, id_obra, isbn, anyo) 
-VALUES ('ED005', 'OB003', '9780987654338', 1968);
+VALUES ('ED0005', 'OB003', '978-0-98-765433-8', 1968);
 
 -- Para OB004: 1 edición
 INSERT INTO edicion (id, id_obra, isbn, anyo) 
-VALUES ('ED006', 'OB004', '9783161484124', 1976);
+VALUES ('ED0006', 'OB004', '978-3-16-148412-4', 1976);
 
 -- Para OB005: 2 ediciones
 INSERT INTO edicion (id, id_obra, isbn, anyo) 
-VALUES ('ED007', 'OB005', '9783161484131', 1981);
+VALUES ('ED0007', 'OB005', '978-3-16-148413-1', 1981);
 INSERT INTO edicion (id, id_obra, isbn, anyo) 
-VALUES ('ED008', 'OB005', '9783161484148', 1982);
+VALUES ('ED0008', 'OB005', '978-3-16-148414-8', 1982);
+
+-- PRUEBA PARA BORRAR
+INSERT INTO edicion (id, id_obra, isbn, anyo) 
+VALUES ('ED0009', 'OB005', '978-3-16-148414-8', 1982);
+
+-- -- PRUEBA PARA DAR DE BAJA
+-- INSERT INTO edicion (id, id_obra, isbn, anyo) 
+-- VALUES ('ED0010', 'OB005', '978-3-16-148414-8', 1982);
 
 -- TABLA EJEMPLAR
 -- Para ED001
 INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
-VALUES ('ED001', 1, SYSDATE-10, SYSDATE-2);
+VALUES ('ED0001', 1, SYSDATE-10, SYSDATE-2);
 
 -- Para ED002
 INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
-VALUES ('ED002', 1, SYSDATE-20, NULL);
+VALUES ('ED0002', 1, SYSDATE-20, NULL);
 
 -- Para ED003
 INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
-VALUES ('ED003', 1, SYSDATE-14, NULL);
+VALUES ('ED0003', 1, SYSDATE-14, NULL);
 
 -- Para ED004 (2 ejemplares)
 INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
-VALUES ('ED004', 1, SYSDATE, NULL);
+VALUES ('ED0004', 1, SYSDATE, NULL);
 INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
-VALUES ('ED004', 2, SYSDATE, SYSDATE);
+VALUES ('ED0004', 2, SYSDATE, SYSDATE);
 
 -- Para ED005
 INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
-VALUES ('ED005', 1, SYSDATE-3, NULL);
+VALUES ('ED0005', 1, SYSDATE-3, NULL);
 
 -- Para ED006 (2 ejemplares)
 INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
-VALUES ('ED006', 1, SYSDATE-21, NULL);
+VALUES ('ED0006', 1, SYSDATE-21, NULL);
 INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
-VALUES ('ED006', 2, SYSDATE-31, SYSDATE);
+VALUES ('ED0006', 2, SYSDATE-15, SYSDATE);
 
 -- Para ED007
 INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
-VALUES ('ED007', 1, SYSDATE-32, NULL);
+VALUES ('ED0007', 1, SYSDATE-32, NULL);
+INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
+VALUES ('ED0007', 2, SYSDATE-32, NULL);
 
 -- Para ED008 (2 ejemplares)
 INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
-VALUES ('ED008', 1, SYSDATE-6, SYSDATE);
+VALUES ('ED0008', 1, SYSDATE-6, SYSDATE);
 INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
-VALUES ('ED008', 2, SYSDATE-6, NULL);
+VALUES ('ED0008', 2, SYSDATE-6, NULL);
+
+-- PRUEBA PARA BORRAR
+INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
+VALUES ('ED0008', 3, SYSDATE-6, NULL);
 
 -- TABLA SOCIO
 INSERT INTO socio (id, nombre, apellidos) 
@@ -197,22 +211,22 @@ VALUES ('S0005', 'Javier', 'López Fernández');
 
 -- TABLA PRESTAMO
 INSERT INTO prestamo (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo, fecha_devolucion) 
-VALUES ('P00001', 'S0001', 'ED001', 1, SYSDATE, SYSDATE-7);
+VALUES ('P00001', 'S0001', 'ED0001', 1, SYSDATE, SYSDATE-7);
 
 INSERT INTO prestamo (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo, fecha_devolucion) 
-VALUES ('P00002', 'S0002', 'ED002', 1, SYSDATE, NULL);
+VALUES ('P00002', 'S0002', 'ED0002', 1, SYSDATE, NULL);
 
 INSERT INTO prestamo (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo, fecha_devolucion) 
-VALUES ('P00003', 'S0003', 'ED003', 1, SYSDATE, NULL);
+VALUES ('P00003', 'S0003', 'ED0003', 1, SYSDATE, NULL);
 
 INSERT INTO prestamo (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo, fecha_devolucion) 
-VALUES ('P00004', 'S0004', 'ED004', 1, SYSDATE, SYSDATE-10);
+VALUES ('P00004', 'S0004', 'ED0004', 1, SYSDATE, SYSDATE-10);
 
 INSERT INTO prestamo (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo, fecha_devolucion) 
-VALUES ('P00005', 'S0005', 'ED005', 1, SYSDATE, NULL);
+VALUES ('P00005', 'S0005', 'ED0005', 1, SYSDATE, NULL);
 
 INSERT INTO prestamo (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo, fecha_devolucion) 
-VALUES ('P00006', 'S0005', 'ED006', 2, SYSDATE, SYSDATE-8);
+VALUES ('P00006', 'S0005', 'ED0006', 2, SYSDATE, SYSDATE-8);
 
 -- ########################
 -- BATERIA DE PRUEBAS
@@ -485,32 +499,79 @@ END;
 SELECT * FROM edicion;
 
 -- EJERCICIO 9         (15)###################################################################################################
+SELECT * FROM edicion;
+
 DECLARE
     v_result INTEGER;
 BEGIN
-    v_result := BiblioTK.borrado_edicion('XLYRAH');
+    v_result := BiblioTK.borrado_edicion('ED0000');
     DBMS_OUTPUT.PUT_LINE('Resultado: ' || v_result);
 END;
 /
 
--- EJERCICIO 10         (16, 17, 18)###################################################################################################
 DECLARE
-    v_id_edicion VARCHAR(10) := 'YRN4ZC';
+    v_result INTEGER;
+BEGIN
+    v_result := BiblioTK.borrado_edicion('ED0009');
+    DBMS_OUTPUT.PUT_LINE('Resultado: ' || v_result);
+END;
+/
+
+DECLARE
+    v_result INTEGER;
+BEGIN
+    v_result := BiblioTK.borrado_edicion('ED0009');
+    DBMS_OUTPUT.PUT_LINE('Resultado: ' || v_result);
+END;
+/
+
+SELECT * FROM edicion;
+
+-- EJERCICIO 10         (16, 17, 18)###################################################################################################
+SELECT * FROM ejemplar;
+
+DECLARE
     v_resultado INTEGER;
 BEGIN
     -- Llamar a la función
-    v_resultado := BiblioTK.alta_ejemplar(v_id_edicion);
+    v_resultado := BiblioTK.alta_ejemplar('ED0000');
 
     -- Mostrar el resultado
     DBMS_OUTPUT.PUT_LINE('Número de ejemplar asignado: ' || v_resultado);
 END;
 /
 
+DECLARE
+    v_resultado INTEGER;
+BEGIN
+    -- Llamar a la función
+    v_resultado := BiblioTK.alta_ejemplar('ED0008');
+
+    -- Mostrar el resultado
+    DBMS_OUTPUT.PUT_LINE('Número de ejemplar asignado: ' || v_resultado);
+END;
+/
+
+DECLARE
+    v_resultado INTEGER;
+BEGIN
+    -- Llamar a la función
+    v_resultado := BiblioTK.alta_ejemplar('ED0008');
+
+    -- Mostrar el resultado
+    DBMS_OUTPUT.PUT_LINE('Número de ejemplar asignado: ' || v_resultado);
+END;
+/
+
+SELECT * FROM ejemplar;
+
 -- EJERCICIO 11         (19, 20, 21, 22)###################################################################################################
+SELECT * FROM ejemplar;
+
 DECLARE 
     v_resultado INTEGER;
 BEGIN
-    v_resultado := BiblioTK.borrado_ejemplar('YRN4ZC', 3);
+    v_resultado := BiblioTK.borrado_ejemplar('ED0000', 0);
 
     IF v_resultado = 1 THEN
         DBMS_OUTPUT.PUT_LINE('Ejemplar borrado exitosamente.');
@@ -524,11 +585,83 @@ BEGIN
 END;
 /
 
+DECLARE 
+    v_resultado INTEGER;
+BEGIN
+    v_resultado := BiblioTK.borrado_ejemplar('ED0008', 1);
+
+    IF v_resultado = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Ejemplar borrado exitosamente.');
+    ELSIF v_resultado = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Ejemplar no encontrado.');
+    ELSIF v_resultado = -1 THEN
+        DBMS_OUTPUT.PUT_LINE('No se puede borrar: no cumple condiciones.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Error inesperado.');
+    END IF;
+END;
+/
+
+DECLARE 
+    v_resultado INTEGER;
+BEGIN
+    v_resultado := BiblioTK.borrado_ejemplar('ED0006', 2);
+
+    IF v_resultado = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Ejemplar borrado exitosamente.');
+    ELSIF v_resultado = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Ejemplar no encontrado.');
+    ELSIF v_resultado = -1 THEN
+        DBMS_OUTPUT.PUT_LINE('No se puede borrar: no cumple condiciones.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Error inesperado.');
+    END IF;
+END;
+/
+
+DECLARE 
+    v_resultado INTEGER;
+BEGIN
+    v_resultado := BiblioTK.borrado_ejemplar('ED0007', 2);
+
+    IF v_resultado = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Ejemplar borrado exitosamente.');
+    ELSIF v_resultado = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Ejemplar no encontrado.');
+    ELSIF v_resultado = -1 THEN
+        DBMS_OUTPUT.PUT_LINE('No se puede borrar: no cumple condiciones.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Error inesperado.');
+    END IF;
+END;
+/
+
+DECLARE 
+    v_resultado INTEGER;
+BEGIN
+    v_resultado := BiblioTK.borrado_ejemplar('ED0008', 3);
+
+    IF v_resultado = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Ejemplar borrado exitosamente.');
+    ELSIF v_resultado = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Ejemplar no encontrado.');
+    ELSIF v_resultado = -1 THEN
+        DBMS_OUTPUT.PUT_LINE('No se puede borrar: no cumple condiciones.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Error inesperado.');
+    END IF;
+END;
+/
+
+SELECT * FROM ejemplar;
+
 -- EJERCICIO 12         (19, 23, 24, 25, 26)###################################################################################################
+SELECT * FROM ejemplar;
+
 DECLARE
     v_resultado INTEGER;
 BEGIN
-    v_resultado := BiblioTK.baja_ejemplar('YRN4ZC', 5);
+    v_resultado := BiblioTK.baja_ejemplar('ED0008', 0);
 
     IF v_resultado = 1 THEN
         DBMS_OUTPUT.PUT_LINE('Baja efectuada correctamente.');
@@ -542,28 +675,131 @@ BEGIN
 END;
 /
 
+DECLARE
+    v_resultado INTEGER;
+BEGIN
+    v_resultado := BiblioTK.baja_ejemplar('ED0008', 1);
+
+    IF v_resultado = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Baja efectuada correctamente.');
+    ELSIF v_resultado = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Ejemplar no encontrado.');
+    ELSIF v_resultado = -1 THEN
+        DBMS_OUTPUT.PUT_LINE('No se puede dar de baja: ya tiene fecha de baja.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Error inesperado.');
+    END IF;
+END;
+/
+
+DECLARE
+    v_resultado INTEGER;
+BEGIN
+    v_resultado := BiblioTK.baja_ejemplar('ED0008', 2);
+
+    IF v_resultado = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Baja efectuada correctamente.');
+    ELSIF v_resultado = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Ejemplar no encontrado.');
+    ELSIF v_resultado = -1 THEN
+        DBMS_OUTPUT.PUT_LINE('No se puede dar de baja: ya tiene fecha de baja.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Error inesperado.');
+    END IF;
+END;
+/
+
+DECLARE
+    v_resultado INTEGER;
+BEGIN
+    v_resultado := BiblioTK.baja_ejemplar('ED0008', 2);
+
+    IF v_resultado = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Baja efectuada correctamente.');
+    ELSIF v_resultado = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Ejemplar no encontrado.');
+    ELSIF v_resultado = -1 THEN
+        DBMS_OUTPUT.PUT_LINE('No se puede dar de baja: ya tiene fecha de baja.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Error inesperado.');
+    END IF;
+END;
+/
+
+SELECT * FROM ejemplar;
+
 -- EJERCICIO 15         (29)###################################################################################################
+SELECT * FROM prestamo;
+
 DECLARE
     v_resultado VARCHAR(6);
 BEGIN
     -- Llamar a la función
-    v_resultado := apertura_prestamo('S0002', 'ED002', 1);
+    v_resultado := apertura_prestamo('S0001', 'ED0002', 1);
 
     -- Mostrar el resultado
     DBMS_OUTPUT.PUT_LINE('Prestamo abierto: ' || v_resultado);
 END;
 /
 
--- EJERCICIO 16         (30)###################################################################################################
 DECLARE
     v_resultado VARCHAR(6);
 BEGIN
     -- Llamar a la función
-    v_resultado := cierre_prestamo('JC8UHD');
+    v_resultado := apertura_prestamo('S0001', 'ED0001', 1);
+
+    -- Mostrar el resultado
+    DBMS_OUTPUT.PUT_LINE('Prestamo abierto: ' || v_resultado);
+END;
+/
+
+DECLARE
+    v_resultado VARCHAR(6);
+BEGIN
+    -- Llamar a la función
+    v_resultado := apertura_prestamo('S0001', 'ED0001', 1);
+
+    -- Mostrar el resultado
+    DBMS_OUTPUT.PUT_LINE('Prestamo abierto: ' || v_resultado);
+END;
+/
+
+SELECT * FROM prestamo;
+
+-- EJERCICIO 16         (30)###################################################################################################
+SELECT * FROM prestamo;
+
+DECLARE
+    v_resultado VARCHAR(6);
+BEGIN
+    -- Llamar a la función
+    v_resultado := cierre_prestamo('P00006');
 
     -- Mostrar el resultado
     DBMS_OUTPUT.PUT_LINE('Prestamo cerrado: ' || v_resultado);
 END;
 /
 
--- SELECT * FROM PRESTAMO;
+DECLARE
+    v_resultado VARCHAR(6);
+BEGIN
+    -- Llamar a la función
+    v_resultado := cierre_prestamo('P00005');
+
+    -- Mostrar el resultado
+    DBMS_OUTPUT.PUT_LINE('Prestamo cerrado: ' || v_resultado);
+END;
+/
+
+DECLARE
+    v_resultado VARCHAR(6);
+BEGIN
+    -- Llamar a la función
+    v_resultado := cierre_prestamo('P00005');
+
+    -- Mostrar el resultado
+    DBMS_OUTPUT.PUT_LINE('Prestamo cerrado: ' || v_resultado);
+END;
+/
+
+SELECT * FROM prestamo;
