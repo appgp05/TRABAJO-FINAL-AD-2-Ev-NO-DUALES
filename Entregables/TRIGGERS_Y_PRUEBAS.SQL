@@ -567,8 +567,10 @@ END;
 SELECT * FROM edicion;
 
 -- EJERCICIO 10         (16, 17, 18)###################################################################################################
+-- ### Ejemplares antes de ejecutar las pruebas
 SELECT * FROM ejemplar;
 
+-- ### Prueba para dar de alta un ejemplar que no existe
 DECLARE
     v_resultado INTEGER;
 BEGIN
@@ -580,6 +582,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para dar de alta un ejemplar
 DECLARE
     v_resultado INTEGER;
 BEGIN
@@ -591,6 +594,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para dar de alta un ejemplar que ya ha sido dado de alta
 DECLARE
     v_resultado INTEGER;
 BEGIN
@@ -602,11 +606,14 @@ BEGIN
 END;
 /
 
+-- ### Ejemplares después de ejecutar las pruebas
 SELECT * FROM ejemplar;
 
 -- EJERCICIO 11         (19, 20, 21, 22)###################################################################################################
+-- ### Ejemplares antes de ejecutar las pruebas
 SELECT * FROM ejemplar;
 
+-- ### Prueba para borrar un ejemplar que no existe
 DECLARE 
     v_resultado INTEGER;
 BEGIN
@@ -624,6 +631,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para borrar un ejemplar que no es el último de su edición
 DECLARE 
     v_resultado INTEGER;
 BEGIN
@@ -641,6 +649,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para borrar un ejemplar que ha sido dado de baja
 DECLARE 
     v_resultado INTEGER;
 BEGIN
@@ -658,6 +667,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para borrar un ejemplar que fué dado de alta hace más de 30 días
 DECLARE 
     v_resultado INTEGER;
 BEGIN
@@ -675,6 +685,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para borrar un ejemplar
 DECLARE 
     v_resultado INTEGER;
 BEGIN
@@ -692,11 +703,14 @@ BEGIN
 END;
 /
 
+-- ### Ejemplares después de ejecutar las pruebas
 SELECT * FROM ejemplar;
 
 -- EJERCICIO 12         (19, 23, 24, 25, 26)###################################################################################################
+-- ### Ejemplares antes de ejecutar las pruebas
 SELECT * FROM ejemplar;
 
+-- ### Prueba para dar de baja un ejemplar que no existe
 DECLARE
     v_resultado INTEGER;
 BEGIN
@@ -714,6 +728,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para dar de baja un ejemplar que ya tiene fecha de baja
 DECLARE
     v_resultado INTEGER;
 BEGIN
@@ -731,6 +746,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para dar de baja un ejemplar
 DECLARE
     v_resultado INTEGER;
 BEGIN
@@ -748,6 +764,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para dar de baja un ejemplar que ya ha sido dado de baja
 DECLARE
     v_resultado INTEGER;
 BEGIN
@@ -765,11 +782,14 @@ BEGIN
 END;
 /
 
+-- ### Ejemplares después de ejecutar las pruebas
 SELECT * FROM ejemplar;
 
 -- EJERCICIO 15         (29)###################################################################################################
+-- ### Préstamos antes de ejecutar las pruebas
 SELECT * FROM prestamo;
 
+-- ### Prueba para hacer un préstamo a un socio que no existe
 DECLARE
     v_resultado VARCHAR(6);
 BEGIN
@@ -781,6 +801,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para hacer un préstamo de una edición que no existe
 DECLARE
     v_resultado VARCHAR(6);
 BEGIN
@@ -792,6 +813,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para hacer un préstamo de una edición que ya está siendo prestada
 DECLARE
     v_resultado VARCHAR(6);
 BEGIN
@@ -803,6 +825,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para hacer un préstamo
 DECLARE
     v_resultado VARCHAR(6);
 BEGIN
@@ -814,6 +837,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para hacer un préstamo cuando ya ha sido prestado pero no cerrado
 DECLARE
     v_resultado VARCHAR(6);
 BEGIN
@@ -825,11 +849,14 @@ BEGIN
 END;
 /
 
+-- ### Préstamos después de ejecutar las pruebas
 SELECT * FROM prestamo;
 
 -- EJERCICIO 16         (30)###################################################################################################
+-- ### Préstamos antes de ejecutar las pruebas
 SELECT * FROM prestamo;
 
+-- ### Prueba para cerrar un préstamo que no existe
 DECLARE
     v_resultado VARCHAR(6);
 BEGIN
@@ -841,6 +868,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para cerrar un préstamo que ya ha sido cerrado
 DECLARE
     v_resultado VARCHAR(6);
 BEGIN
@@ -852,6 +880,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para cerrar un préstamo
 DECLARE
     v_resultado VARCHAR(6);
 BEGIN
@@ -863,6 +892,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para cerrar un préstamo que ya ha sido cerrado
 DECLARE
     v_resultado VARCHAR(6);
 BEGIN
@@ -874,4 +904,5 @@ BEGIN
 END;
 /
 
+-- ### Préstamos después de ejecutar las pruebas
 SELECT * FROM prestamo;
