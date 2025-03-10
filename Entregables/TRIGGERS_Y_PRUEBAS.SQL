@@ -987,3 +987,12 @@ END;
 
 -- ### Préstamos después de ejecutar las pruebas
 SELECT * FROM prestamo;
+
+-- COMPROBACIÓN DE LAS TABLAS DE HISTORIAL DE BORRADO
+SELECT * FROM historico_obra_auditado;
+SELECT * FROM historico_autor_auditado;
+SELECT * FROM historico_autor_obra_auditado;
+SELECT * FROM historico_edicion_auditado;
+SELECT * FROM historico_ejemplar_auditado;
+SELECT * FROM historico_socio_auditado;
+SELECT * FROM historico_prestamo_auditado;
