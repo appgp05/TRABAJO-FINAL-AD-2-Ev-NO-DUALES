@@ -1,3 +1,7 @@
+-- ######################################
+-- PACKAGE CON EL CUERPO DE LAS FUNCIONES
+-- ######################################
+
 CREATE OR REPLACE PACKAGE BODY BiblioTK IS
     -- EJERCICIO 1         (08)###################################################################################################
     FUNCTION alta_obra(

@@ -1,8 +1,8 @@
--- ÉSTA ES LA PARTE OPCIONAL
+-- ##############
+-- PARTE OPCIONAL
+-- ##############
 
--- #########################
--- EJERCICIO 3        (09.1)
--- #########################
+-- EJERCICIO 3        (09.1)###################################################################################################
 DROP TABLE historico_obra_auditado;
 
 CREATE TABLE historico_obra_auditado (
@@ -13,9 +13,7 @@ CREATE TABLE historico_obra_auditado (
     CONSTRAINT PK_historico_obra_auditado PRIMARY KEY (id)
 );
 
--- #########################################
--- EJERCICIO 13         (27)
--- #########################################
+-- EJERCICIO 13         (27)###################################################################################################
 DROP TABLE socio;
 
 CREATE TABLE socio (
@@ -27,9 +25,7 @@ CREATE TABLE socio (
     CONSTRAINT NN_socio_apellidos CHECK (apellidos IS NOT NULL)
 );
 
--- #########################################
--- EJERCICIO 14         (28)
--- #########################################
+-- EJERCICIO 14         (28)###################################################################################################
 DROP TABLE prestamo;
 
 CREATE TABLE prestamo (
@@ -47,9 +43,7 @@ CREATE TABLE prestamo (
     CONSTRAINT FK_prestamo_id_ejemplar FOREIGN KEY (id_ejemplar, numero_ejemplar) REFERENCES ejemplar(id_edicion, numero)
 );
 
--- #########################################
--- EJERCICIO 15         (29)
--- #########################################
+-- EJERCICIO 15         (29)###################################################################################################
 CREATE OR REPLACE FUNCTION apertura_prestamo(
     p_id_socio CHAR, 
     p_id_ejemplar CHAR, 
@@ -112,9 +106,7 @@ EXCEPTION
 END apertura_prestamo;
 /
 
--- #########################################
--- EJERCICIO 16         (30)
--- #########################################
+-- EJERCICIO 16         (30)###################################################################################################
 CREATE OR REPLACE FUNCTION cierre_prestamo(
     p_id_prestamo CHAR
 ) RETURN INTEGER IS

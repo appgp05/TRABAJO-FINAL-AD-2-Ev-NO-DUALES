@@ -1,3 +1,7 @@
+-- ###################################################################################
+-- INICIO CON LAS TABLAS NECESARIAS PARA QUE FUNCIONEN LOS PACKAGE, TRIGGERS Y PRUEBAS
+-- ###################################################################################
+
 ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;
 
 CREATE USER LOLO IDENTIFIED BY LOLO;

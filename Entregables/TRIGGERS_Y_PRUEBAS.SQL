@@ -1,6 +1,6 @@
--- ########################
+-- ########
 -- TRIGGERS
--- ########################
+-- ########
 
 -- EJERCICIO 3        (09.1)###################################################################################################
 CREATE OR REPLACE TRIGGER auditar_borrado_obra
@@ -76,9 +76,9 @@ BEGIN
 END;
 /
 
--- ########################
+-- ###################
 -- INSERTS PARA TABLAS
--- ########################
+-- ###################
 
 -- TABLA OBRA
 INSERT INTO obra (id, titulo, anyo) VALUES ('OB001', 'El Imperio Final', 2005);
@@ -228,9 +228,9 @@ VALUES ('P00005', 'S0005', 'ED0005', 1, SYSDATE, NULL);
 INSERT INTO prestamo (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo, fecha_devolucion) 
 VALUES ('P00006', 'S0005', 'ED0006', 2, SYSDATE, SYSDATE-8);
 
--- ########################
+-- ##################
 -- BATERIA DE PRUEBAS
--- ########################
+-- ##################
 
 -- EJERCICIO 1         (08)###################################################################################################
 -- ### Obras antes de ejecutar las pruebas

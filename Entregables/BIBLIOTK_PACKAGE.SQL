@@ -1,3 +1,7 @@
+-- ########################################
+-- PACKAGE CON LOS NOMBRES DE LAS FUNCIONES
+-- ########################################
+
 CREATE OR REPLACE PACKAGE BiblioTK AS
     -- EJERCICIO 1         (08)
     FUNCTION alta_obra(
