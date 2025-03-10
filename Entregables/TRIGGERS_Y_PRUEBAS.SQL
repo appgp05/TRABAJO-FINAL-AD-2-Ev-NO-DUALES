@@ -233,8 +233,10 @@ VALUES ('P00006', 'S0005', 'ED0006', 2, SYSDATE, SYSDATE-8);
 -- ########################
 
 -- EJERCICIO 1         (08)###################################################################################################
+-- ### Obras antes de ejecutar las pruebas
 SELECT * FROM OBRA;
 
+-- ### Pruebas para insertar dos obras
 DECLARE
     -- Declaramos una variable para alamcenar el ID generado por la función alta_obra
     v_nueva_obra_id VARCHAR(5); 
@@ -257,11 +259,14 @@ BEGIN
 END;
 /
 
+-- ### Obras depués de ejecutar las pruebas
 SELECT * FROM OBRA;
 
 -- EJERCICIO 2         (09)###################################################################################################
+-- ### Obras antes de ejecutar las pruebas
 SELECT * FROM OBRA;
 
+-- ### Prueba para borrar una obra que no existe
 DECLARE
     v_result INTEGER; -- Variable para almacenar el resultado de la función borrado_obra
 BEGIN
@@ -273,6 +278,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para borrar una obra que tiene referencias (No se puede borrar)
 DECLARE
     v_result INTEGER; -- Variable para almacenar el resultado de la función borrado_obra
 BEGIN
@@ -284,6 +290,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para borrar una obra
 DECLARE
     v_result INTEGER; -- Variable para almacenar el resultado de la función borrado_obra
 BEGIN
@@ -295,6 +302,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para borrar una obra que ya ha sido borrada
 DECLARE
     v_result INTEGER; -- Variable para almacenar el resultado de la función borrado_obra
 BEGIN
@@ -306,11 +314,14 @@ BEGIN
 END;
 /
 
+-- ### Obras después de ejecutar las pruebas
 SELECT * FROM OBRA;
 
 -- EJERCICIO 4        (10)###################################################################################################
+-- ### Autores antes de ejecutar las pruebas
 SELECT * FROM AUTOR;
 
+-- ### Pruebas para insertar dos autores
 DECLARE 
     -- Declaramos una variable para alamcenar el ID
     v_nuevo_autor_id VARCHAR(4);
@@ -331,11 +342,14 @@ BEGIN
 END;
 /
 
+-- ### Autores después de ejecutar las pruebas
 SELECT * FROM AUTOR;
 
 -- EJERCICIO 5        (11)###################################################################################################
+-- ### Autores antes de ejecutar las pruebas
 SELECT * FROM AUTOR;
 
+-- ### Prueba para borrar un autor que no existe
 DECLARE 
     v_result INTEGER; -- Variable para almacenar el resultado 
 BEGIN 
@@ -347,6 +361,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para borrar un autor que tiene referencias (No se puede borrar)
 DECLARE 
     v_result INTEGER; -- Variable para almacenar el resultado 
 BEGIN 
@@ -358,6 +373,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para borrar un autor
 DECLARE 
     v_result INTEGER; -- Variable para almacenar el resultado 
 BEGIN 
@@ -369,6 +385,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para borrar un autor que ya ha sido borrado
 DECLARE 
     v_result INTEGER; -- Variable para almacenar el resultado 
 BEGIN 
@@ -380,11 +397,14 @@ BEGIN
 END;
 /
 
+-- ### Autores después de ejecutar las pruebas
 SELECT * FROM AUTOR;
 
 -- EJERCICIO 6        (12)###################################################################################################
+-- ### Vínculos autor_obra antes de ejecutar las pruebas
 SELECT * FROM autor_obra;
 
+-- ### Prueba para vincular un autor y una obra con un autor que no existe
 DECLARE 
     v_result INTEGER; 
 BEGIN
@@ -394,6 +414,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para vincular un autor y una obra con una obra que no existe
 DECLARE 
     v_result INTEGER; 
 BEGIN
@@ -403,6 +424,17 @@ BEGIN
 END;
 /
 
+-- ### Prueba para vincular un autor y una obra
+DECLARE
+    v_result INTEGER; 
+BEGIN
+    -- autor / obra
+    v_result := BiblioTK.vincular('A005', 'OB005');
+    DBMS_OUTPUT.PUT_LINE('Resultado: ' || v_result);
+END;
+/
+
+-- ### Prueba para vincular un autor y una obra cuando ya existe el vínculo
 DECLARE 
     v_result INTEGER; 
 BEGIN
@@ -412,20 +444,14 @@ BEGIN
 END;
 /
 
-DECLARE 
-    v_result INTEGER; 
-BEGIN
-    -- autor / obra
-    v_result := BiblioTK.vincular('A005', 'OB005');
-    DBMS_OUTPUT.PUT_LINE('Resultado: ' || v_result);
-END;
-/
-
+-- ### Vínculos autor_obra después de ejecutar las pruebas
 SELECT * FROM autor_obra;
 
 -- EJERCICIO 7         (13)###################################################################################################
+-- ### Vínculos autor_obra antes de ejecutar las pruebas
 SELECT * FROM autor_obra;
 
+-- ### Prueba para desvincular un autor y una obra con un autor que no existe
 DECLARE
     v_result INTEGER;
 BEGIN
@@ -434,6 +460,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para desvincular un autor y una obra con una obra que no existe
 DECLARE
     v_result INTEGER;
 BEGIN
@@ -442,6 +469,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para desvincular un autor y una obra
 DECLARE
     v_result INTEGER;
 BEGIN
@@ -450,6 +478,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para desvincular un autor y una obra que ya han sido desvinculados
 DECLARE
     v_result INTEGER;
 BEGIN
@@ -458,11 +487,14 @@ BEGIN
 END;
 /
 
+-- ### Vínculos autor_obra después de ejecutar las pruebas
 SELECT * FROM autor_obra;
 
 -- EJERCICIO 8         (14)###################################################################################################
+-- ### Ediciones antes de ejecutar las pruebas
 SELECT * FROM edicion;
 
+-- ### Prueba para insertar una edición de una obra que no existe
 DECLARE
     v_id_edicion VARCHAR(6);
 BEGIN
@@ -474,6 +506,7 @@ BEGIN
 END;
 /
 
+-- ### Pruebas para insertar dos ediciones de una obra
 DECLARE
     v_id_edicion VARCHAR(6);
 BEGIN
@@ -496,11 +529,14 @@ BEGIN
 END;
 /
 
+-- ### Ediciones después de ejecutar las pruebas
 SELECT * FROM edicion;
 
 -- EJERCICIO 9         (15)###################################################################################################
+-- ### Ediciones antes de ejecutar las pruebas
 SELECT * FROM edicion;
 
+-- ### Prueba para borrar una edición que no existe
 DECLARE
     v_result INTEGER;
 BEGIN
@@ -509,6 +545,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para borrar una edición
 DECLARE
     v_result INTEGER;
 BEGIN
@@ -517,6 +554,7 @@ BEGIN
 END;
 /
 
+-- ### Prueba para borrar una edición que ya ha sido borrada
 DECLARE
     v_result INTEGER;
 BEGIN
@@ -525,6 +563,7 @@ BEGIN
 END;
 /
 
+-- ### Ediciones después de ejecutar las pruebas
 SELECT * FROM edicion;
 
 -- EJERCICIO 10         (16, 17, 18)###################################################################################################
