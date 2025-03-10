@@ -60,7 +60,7 @@ CREATE OR REPLACE TRIGGER auditar_borrado_autor_obra
 BEFORE DELETE ON autor_obra
 FOR EACH ROW
 BEGIN
-    INSERT INTO historico_autor_obra_auditado (id_autor, id_obra, fecha_borrado) VALUES(:OLD.id_autor, :OLD.id_obra, SYSTIMESTAMP);
+    INSERT INTO historico_autor_obra_auditado (id_autor, id_obra, fecha_borrado) VALUES (:OLD.id_autor, :OLD.id_obra, SYSTIMESTAMP);
 END;
 /
 
@@ -83,7 +83,7 @@ CREATE OR REPLACE TRIGGER auditar_borrado_edicion
 BEFORE DELETE ON edicion
 FOR EACH ROW
 BEGIN
-    INSERT INTO historico_edicion_auditado (id, id_obra, isbn, anyo, fecha_borrado) VALUES(:OLD.id, :OLD.id_obra, :OLD.isbn, :OLD.anyo, SYSTIMESTAMP);
+    INSERT INTO historico_edicion_auditado (id, id_obra, isbn, anyo, fecha_borrado) VALUES (:OLD.id, :OLD.id_obra, :OLD.isbn, :OLD.anyo, SYSTIMESTAMP);
 END;
 /
 
@@ -106,27 +106,56 @@ CREATE OR REPLACE TRIGGER auditar_borrado_ejemplar
 BEFORE DELETE ON ejemplar
 FOR EACH ROW
 BEGIN
-    INSERT INTO historico_ejemplar_auditado (id_edicion, numero, alta, baja, fecha_borrado) VALUES(:OLD.id_edicion, :OLD.numero, :OLD.alta, :OLD.baja, SYSTIMESTAMP);
+    INSERT INTO historico_ejemplar_auditado (id_edicion, numero, alta, baja, fecha_borrado) VALUES (:OLD.id_edicion, :OLD.numero, :OLD.alta, :OLD.baja, SYSTIMESTAMP);
 END;
 /
 
 -- ##################
-CREATE OR REPLACE TRIGGER auditar_borrado_socio;
-BEFORE DELETE ON socio;
+DROP SEQUENCE sequence_historico_socio_auditado;
+CREATE SEQUENCE sequence_historico_socio_auditado START WITH 1 INCREMENT BY 1 NOCACHE;
+
+DROP TABLE historico_socio_auditado;
+CREATE TABLE historico_socio_auditado (
+    id_historico INTEGER DEFAULT sequence_historico_socio_auditado.NEXTVAL,
+    id CHAR(5),
+    nombre VARCHAR(50),
+    apellidos VARCHAR(100),
+    fecha_borrado TIMESTAMP DEFAULT SYSTIMESTAMP,
+    CONSTRAINT PK_historico_socio_auditado PRIMARY KEY (id_historico)
+);
+
+CREATE OR REPLACE TRIGGER auditar_borrado_socio
+BEFORE DELETE ON socio
 FOR EACH ROW
 BEGIN
-    --CODIGO
+    INSERT INTO historico_socio_auditado (id, nombre, apellidos, fecha_borrado) VALUES (:OLD.id, :OLD.nombre, :OLD.apellidos, SYSTIMESTAMP);
 END;
 /
 
 -- ##################
--- CREATE OR REPLACE TRIGGER auditar_borrado_prestamo;
--- BEFORE DELETE ON prestamo;
--- FOR EACH ROW
--- BEGIN
---     --CODIGO
--- END;
--- /
+DROP SEQUENCE sequence_historico_prestamo_auditado;
+CREATE SEQUENCE sequence_historico_prestamo_auditado START WITH 1 INCREMENT BY 1 NOCACHE;
+
+DROP TABLE historico_prestamo_auditado;
+CREATE TABLE historico_prestamo_auditado (
+    id_historico INTEGER DEFAULT sequence_historico_prestamo_auditado.NEXTVAL,
+    id CHAR(6),
+    id_socio CHAR(5),
+    id_ejemplar CHAR(6),
+    numero_ejemplar INTEGER,
+    fecha_prestamo DATE DEFAULT SYSDATE,
+    fecha_devolucion DATE,
+    fecha_borrado TIMESTAMP DEFAULT SYSTIMESTAMP,
+    CONSTRAINT PK_historico_prestamo_auditado PRIMARY KEY (id_historico)
+);
+
+CREATE OR REPLACE TRIGGER auditar_borrado_prestamo
+BEFORE DELETE ON prestamo
+FOR EACH ROW
+BEGIN
+   INSERT INTO historico_prestamo_auditado (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo, fecha_devolucion) VALUES (:OLD.id, :OLD.id_socio, :OLD.id_ejemplar, :OLD.numero_ejemplar, :OLD.fecha_prestamo, :OLD.fecha_devolucion);
+END;
+/
 
 -- ###################
 -- INSERTS PARA TABLAS
