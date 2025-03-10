@@ -2,6 +2,18 @@
 -- TRIGGERS
 -- ########
 
+DROP TRIGGER auditar_borrado_obra;
+DROP TRIGGER auditar_borrado_autor;
+DROP TRIGGER auditar_borrado_autor_obra;
+DROP TRIGGER auditar_borrado_edicion;
+DROP TRIGGER auditar_borrado_ejemplar;
+DROP TRIGGER auditar_borrado_socio;
+DROP TRIGGER auditar_borrado_prestamo;
+DROP TRIGGER auditar_borrado_prestamo;
+DROP TRIGGER auditar_borrado_prestamo;
+DROP TRIGGER auditar_borrado_;
+-- DROP TRIGGER auditar_borrado_;
+
 -- EJERCICIO 3        (09.1)###################################################################################################
 CREATE OR REPLACE TRIGGER auditar_borrado_obra
 BEFORE DELETE ON obra
@@ -12,69 +24,69 @@ END;
 /
 
 -- EJERCICIO 16         (30)###################################################################################################
-CREATE OR REPLACE TRIGGER auditar_borrado_autor
-BEFORE DELETE ON autor
-FOR EACH ROW
-BEGIN
-    --CODIGO
-END;
-/
+-- CREATE OR REPLACE TRIGGER auditar_borrado_autor
+-- BEFORE DELETE ON autor
+-- FOR EACH ROW
+-- BEGIN
+--     --CODIGO
+-- END;
+-- /
 
-CREATE OR REPLACE TRIGGER auditar_borrado_autor_obra
-BEFORE DELETE ON autor_obra
-FOR EACH ROW
-BEGIN
-    --CODIGO
-END;
-/
+-- CREATE OR REPLACE TRIGGER auditar_borrado_autor_obra
+-- BEFORE DELETE ON autor_obra
+-- FOR EACH ROW
+-- BEGIN
+--     --CODIGO
+-- END;
+-- /
 
-CREATE OR REPLACE TRIGGER auditar_borrado_edicion
-BEFORE DELETE ON edicion
-FOR EACH ROW
-BEGIN
-    --CODIGO
-END;
-/
+-- CREATE OR REPLACE TRIGGER auditar_borrado_edicion
+-- BEFORE DELETE ON edicion
+-- FOR EACH ROW
+-- BEGIN
+--     --CODIGO
+-- END;
+-- /
 
-CREATE OR REPLACE TRIGGER auditar_borrado_ejemplar
-BEFORE DELETE ON ejemplar
-FOR EACH ROW
-BEGIN
-    --CODIGO
-END;
-/
+-- CREATE OR REPLACE TRIGGER auditar_borrado_ejemplar
+-- BEFORE DELETE ON ejemplar
+-- FOR EACH ROW
+-- BEGIN
+--     --CODIGO
+-- END;
+-- /
 
-CREATE OR REPLACE TRIGGER auditar_borrado_socio;
-BEFORE DELETE ON socio;
-FOR EACH ROW
-BEGIN
-    --CODIGO
-END;
-/
+-- CREATE OR REPLACE TRIGGER auditar_borrado_socio;
+-- BEFORE DELETE ON socio;
+-- FOR EACH ROW
+-- BEGIN
+--     --CODIGO
+-- END;
+-- /
 
-CREATE OR REPLACE TRIGGER auditar_borrado_prestamo;
-BEFORE DELETE ON prestamo;
-FOR EACH ROW
-BEGIN
-    --CODIGO
-END;
-/
+-- CREATE OR REPLACE TRIGGER auditar_borrado_prestamo;
+-- BEFORE DELETE ON prestamo;
+-- FOR EACH ROW
+-- BEGIN
+--     --CODIGO
+-- END;
+-- /
 
-CREATE OR REPLACE TRIGGER auditar_borrado_
-BEFORE DELETE ON --NOMBRE TABLA
-FOR EACH ROW
-BEGIN
-    --CODIGO
-END;
-/
+-- CREATE OR REPLACE TRIGGER auditar_borrado_
+-- BEFORE DELETE ON --NOMBRE TABLA
+-- FOR EACH ROW
+-- BEGIN
+--     --CODIGO
+-- END;
+-- /
 
-CREATE OR REPLACE TRIGGER auditar_borrado_
-BEFORE DELETE ON --NOMBRE TABLA
-FOR EACH ROW
-BEGIN
-    --CODIGO
-END;
-/
+-- CREATE OR REPLACE TRIGGER auditar_borrado_
+-- BEFORE DELETE ON --NOMBRE TABLA
+-- FOR EACH ROW
+-- BEGIN
+--     --CODIGO
+-- END;
+-- /
 
 -- ###################
 -- INSERTS PARA TABLAS
