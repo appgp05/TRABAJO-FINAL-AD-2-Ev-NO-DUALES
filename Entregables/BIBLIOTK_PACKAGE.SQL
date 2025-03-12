@@ -1,6 +1,6 @@
--- ########################################
--- PACKAGE CON LOS NOMBRES DE LAS FUNCIONES
--- ########################################
+-- #####################################################
+-- PACKAGE CON LOS NOMBRES DE LAS FUNCIONES OBLIGATORIAS
+-- #####################################################
 
 CREATE OR REPLACE PACKAGE BiblioTK AS
     -- EJERCICIO 1         (08)
