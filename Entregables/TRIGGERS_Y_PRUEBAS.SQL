@@ -308,7 +308,7 @@ INSERT INTO prestamo (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo
 VALUES ('P00001', 'S0001', 'ED0001', 1, SYSDATE, SYSDATE-7);
 
 INSERT INTO prestamo (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo, fecha_devolucion) 
-VALUES ('P00002', 'S0002', 'ED0002', 1, SYSDATE, NULL);
+VALUES ('P00002', 'S0002', 'ED0002', 1, SYSDATE-13, NULL);
 
 INSERT INTO prestamo (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo, fecha_devolucion) 
 VALUES ('P00003', 'S0003', 'ED0003', 1, SYSDATE, NULL);

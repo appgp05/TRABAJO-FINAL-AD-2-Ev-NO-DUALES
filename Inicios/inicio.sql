@@ -15,6 +15,9 @@ LOLO
 
 SET SERVEROUTPUT ON;
 
+DROP TABLE sanciones;
+DROP TABLE tipo_sancion;
+
 DROP TABLE autor_obra;
 DROP TABLE autor;
 DROP TABLE prestamo;

@@ -25,7 +25,7 @@ CREATE TABLE prestamo (
     id_socio CHAR(5),
     id_ejemplar CHAR(6),
     numero_ejemplar INTEGER,
-    fecha_prestamo DATE DEFAULT SYSDATE,
+    fecha_prestamo DATE,
     fecha_devolucion DATE,
     CONSTRAINT PK_prestamo PRIMARY KEY (id),
     CONSTRAINT NN_prestamo_id_socio CHECK (id_socio IS NOT NULL),
