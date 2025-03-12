@@ -132,13 +132,13 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         -- Verificar si el autor existe en la tabla autor
         SELECT COUNT(*) INTO v_count_autor FROM autor WHERE id = p_id_autor;
         IF v_count_autor = 0 THEN
-            RETURN -2; -- Autor no encontado
+            RETURN -1; -- Autor no encontado
         END IF;
 
         -- Verificar si la obra existe en la tabla obra
         SELECT COUNT(*) INTO v_count_obra FROM obra WHERE id = p_id_obra;
         IF v_count_obra = 0 THEN
-            RETURN -3; -- Obra no encontrada
+            RETURN -1; -- Obra no encontrada
         END IF;
 
         -- Verificar si la relación ya existe en 'autor_obra'
@@ -146,7 +146,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         WHERE id_autor = p_id_autor AND id_obra = p_id_obra;
 
         IF v_count_vinculo > 0 THEN
-            RETURN 0; -- La relaciön ya existe
+            RETURN -1; -- La relaciön ya existe
         END IF;
 
         -- Insertamos la vinculación en 'autor_obra'
@@ -337,7 +337,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         RETURN 1;
     EXCEPTION
         WHEN OTHERS THEN
-            RETURN -2; -- Error inesperado
+            RETURN -1; -- Error inesperado
     END borrado_ejemplar;
 
     -- EJERCICIO 12         (19, 23, 24, 25, 26)###################################################################################################
@@ -346,7 +346,7 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         p_numero INTEGER)
     RETURN INTEGER IS
         v_baja DATE;
-        v_count INTEGER := 0;
+        v_count INTEGER;
     BEGIN
         -- Verificar si el ejemplar existe
         SELECT COUNT(*) INTO v_count
@@ -376,10 +376,8 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         RETURN 1;
 
     EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            RETURN 0;
         WHEN OTHERS THEN
-            RETURN -2; -- Error inesperado
+            RETURN -1; -- Error inesperado
     END baja_ejemplar;
 END;
 /

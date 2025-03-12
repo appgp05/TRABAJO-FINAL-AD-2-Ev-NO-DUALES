@@ -66,7 +66,7 @@ BEGIN
     -- Si existe
     IF v_count_id = 1
     THEN
-        return '-1';
+        return '-4';
     END IF;
 
     -- Comprobar si ya hay un prestamo sin cerrar de ese libro
@@ -75,7 +75,7 @@ BEGIN
     -- Si el ejemplar aún está en préstamo
     IF v_count_prestamo > 0
     THEN
-        return '-1';
+        return '-3';
     END IF;
 
     -- Comprobar si existe el socio
@@ -93,7 +93,7 @@ BEGIN
     -- Si el ejemplar aún está en préstamo
     IF v_count_ejemplar = 0
     THEN
-        return '-1';
+        return '-2';
     END IF;
 
     -- Insertar el nuevo préstamo
@@ -105,7 +105,7 @@ BEGIN
 
 EXCEPTION
     WHEN OTHERS THEN
-        RETURN '-1';
+        RETURN '-5';
 END apertura_prestamo;
 /
 
@@ -143,6 +143,6 @@ BEGIN
     
 EXCEPTION
     WHEN OTHERS THEN
-        RETURN '-1';
+        RETURN '-2';
 END cierre_prestamo;
 /
