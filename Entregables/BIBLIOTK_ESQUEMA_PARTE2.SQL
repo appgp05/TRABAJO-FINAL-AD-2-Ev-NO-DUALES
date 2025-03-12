@@ -3,18 +3,7 @@
 -- ##############
 
 -- EJERCICIO 3        (09.1)###################################################################################################
-DROP SEQUENCE sequence_historico_obra_auditado;
-CREATE SEQUENCE sequence_historico_obra_auditado START WITH 1 INCREMENT BY 1 NOCACHE;
-
-DROP TABLE historico_obra_auditado;
-CREATE TABLE historico_obra_auditado (
-    id_historico INTEGER DEFAULT sequence_historico_obra_auditado.NEXTVAL,
-    id CHAR(5),
-    titulo VARCHAR(100),
-    anyo INTEGER,
-    fecha_borrado TIMESTAMP DEFAULT SYSTIMESTAMP,
-    CONSTRAINT PK_historico_obra_auditado PRIMARY KEY (id_historico)
-);
+    
 
 -- EJERCICIO 13         (27)###################################################################################################
 DROP TABLE socio;
