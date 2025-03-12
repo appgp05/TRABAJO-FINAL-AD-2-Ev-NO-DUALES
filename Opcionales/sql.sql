@@ -91,7 +91,6 @@ BEGIN
         RETURN '-6';
     END IF;
 
-
     -- Insertar el nuevo préstamo
     INSERT INTO prestamo (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo)
     VALUES (v_id, p_id_socio, p_id_ejemplar, p_numero_ejemplar, SYSDATE);
@@ -103,15 +102,6 @@ EXCEPTION
     WHEN OTHERS THEN
         RETURN '-5';
 END apertura_prestamo;
-/
-
-
-
-DECLARE
-    response VARCHAR(6);
-BEGIN
-    response := cierre_prestamo('P00002');
-END;
 /
 
 SELECT * FROM prestamo;
@@ -150,6 +140,7 @@ BEGIN
 
     v_tipo_sancion := 0;
 
+    DBMS_OUTPUT.PUT_LINE('sadasd');
 
     IF (SYSDATE - v_prestamo.fecha_prestamo) > 7+30 THEN
         DBMS_OUTPUT.PUT_LINE('3');
@@ -164,7 +155,7 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('0');
     END IF;
 
-        DBMS_OUTPUT.PUT_LINE('sadasd' || v_tipo_sancion);
+    DBMS_OUTPUT.PUT_LINE('sadasd');
 
     IF v_tipo_sancion != 0
     THEN 
@@ -199,6 +190,18 @@ DECLARE
     response VARCHAR(6);
 BEGIN
     response := cierre_prestamo('P00002');
+    DBMS_OUTPUT.PUT_LINE(response);
+END;
+/
+
+SELECT * FROM prestamo;
+SELECT * FROM sanciones;
+
+DECLARE
+    response VARCHAR(6);
+BEGIN
+    response := apertura_prestamo('S0002', 'ED0010', 1);
+    DBMS_OUTPUT.PUT_LINE(response);
 END;
 /
 

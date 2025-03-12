@@ -238,6 +238,10 @@ VALUES ('ED0008', 'OB005', '978-3-16-148414-8', 1982);
 INSERT INTO edicion (id, id_obra, isbn, anyo) 
 VALUES ('ED0009', 'OB005', '978-3-16-148414-8', 1982);
 
+-- PRUEBA PARA SANCION
+INSERT INTO edicion (id, id_obra, isbn, anyo) 
+VALUES ('ED0010', 'OB005', '978-3-16-148414-8', 1982);
+
 -- -- PRUEBA PARA DAR DE BAJA
 -- INSERT INTO edicion (id, id_obra, isbn, anyo) 
 -- VALUES ('ED0010', 'OB005', '978-3-16-148414-8', 1982);
@@ -286,6 +290,10 @@ VALUES ('ED0008', 2, SYSDATE-6, NULL);
 -- PRUEBA PARA BORRAR
 INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
 VALUES ('ED0008', 3, SYSDATE-6, NULL);
+
+-- PRUEBA PARA SANCION
+INSERT INTO ejemplar (id_edicion, numero, alta, baja) 
+VALUES ('ED0010', 1, SYSDATE-6, NULL);
 
 -- TABLA SOCIO
 INSERT INTO socio (id, nombre, apellidos) 
