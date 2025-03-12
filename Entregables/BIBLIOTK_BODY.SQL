@@ -3,6 +3,10 @@
 -- ######################################
 
 CREATE OR REPLACE PACKAGE BODY BiblioTK IS
+    -- ###########
+    -- OBLIGATORIO
+    -- ###########
+
     -- EJERCICIO 1         (08)###################################################################################################
     FUNCTION alta_obra(
         p_titulo VARCHAR,
@@ -379,5 +383,109 @@ CREATE OR REPLACE PACKAGE BODY BiblioTK IS
         WHEN OTHERS THEN
             RETURN -1; -- Error inesperado
     END baja_ejemplar;
+    
+    -- ########
+    -- OPCIONAL
+    -- ########
+
+    -- EJERCICIO 15         (29)###################################################################################################
+    FUNCTION apertura_prestamo(
+        p_id_socio CHAR, 
+        p_id_ejemplar CHAR, 
+        p_numero_ejemplar INTEGER
+    ) RETURN CHAR IS
+        v_id CHAR(6);
+        v_count_id INTEGER;
+        v_count_prestamo INTEGER;
+        v_count_socio INTEGER;
+        v_count_ejemplar INTEGER;
+    BEGIN
+        v_id := dbms_random.string('X', 6);
+
+        -- Comprobar si ya existe el ID
+        SELECT COUNT(*) INTO v_count_id FROM prestamo WHERE id = v_id;
+
+        -- Si existe
+        IF v_count_id = 1
+        THEN
+            return '-4';
+        END IF;
+
+        -- Comprobar si ya hay un prestamo sin cerrar de ese libro
+        SELECT COUNT(*) INTO v_count_prestamo FROM prestamo WHERE id_ejemplar = p_id_ejemplar AND numero_ejemplar = p_numero_ejemplar AND fecha_devolucion IS NULL;
+
+        -- Si el ejemplar aún está en préstamo
+        IF v_count_prestamo > 0
+        THEN
+            return '-3';
+        END IF;
+
+        -- Comprobar si existe el socio
+        SELECT COUNT(*) INTO v_count_socio FROM socio WHERE id = p_id_socio;
+
+        -- Si el ejemplar aún está en préstamo
+        IF v_count_socio = 0
+        THEN
+            return '-1';
+        END IF;
+
+        -- Comprobar si existe el ejemplar
+        SELECT COUNT(*) INTO v_count_ejemplar FROM ejemplar WHERE id_edicion = p_id_ejemplar AND numero = p_numero_ejemplar;
+
+        -- Si el ejemplar aún está en préstamo
+        IF v_count_ejemplar = 0
+        THEN
+            return '-2';
+        END IF;
+
+        -- Insertar el nuevo préstamo
+        INSERT INTO prestamo (id, id_socio, id_ejemplar, numero_ejemplar, fecha_prestamo)
+        VALUES (v_id, p_id_socio, p_id_ejemplar, p_numero_ejemplar, SYSDATE);
+
+        -- Devolver el nuevo ID
+        RETURN v_id;
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            RETURN '-5';
+    END apertura_prestamo;
+
+
+    -- EJERCICIO 16         (30)###################################################################################################
+    FUNCTION cierre_prestamo(
+        p_id_prestamo CHAR
+    ) RETURN INTEGER IS
+        v_count INTEGER;
+        v_fecha_devolucion DATE;
+    BEGIN
+        -- Comprobar que el préstamo existe
+        SELECT COUNT(*) INTO v_count FROM prestamo WHERE id = p_id_prestamo;
+
+        -- Si el préstamo no existe
+        IF v_count = 0
+        THEN
+            return '0';
+        END IF;
+
+        -- Comprobar que el préstamo no está cerrado
+        SELECT fecha_devolucion INTO v_fecha_devolucion FROM prestamo WHERE id = p_id_prestamo;
+
+        -- Si el préstamo está cerrado
+        IF v_fecha_devolucion IS NOT NULL
+        THEN
+            return '-1';
+        END IF;
+
+        -- Cerrar préstamo
+        UPDATE prestamo
+        SET fecha_devolucion = SYSDATE
+        WHERE id = p_id_prestamo;
+        
+        RETURN 1;
+        
+    EXCEPTION
+        WHEN OTHERS THEN
+            RETURN '-2';
+    END cierre_prestamo;
 END;
 /

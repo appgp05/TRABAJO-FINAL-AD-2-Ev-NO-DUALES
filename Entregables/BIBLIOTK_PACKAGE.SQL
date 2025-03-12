@@ -3,6 +3,10 @@
 -- ########################################
 
 CREATE OR REPLACE PACKAGE BiblioTK AS
+    -- ###########
+    -- OBLIGATORIO
+    -- ###########
+
     -- EJERCICIO 1         (08)
     FUNCTION alta_obra(
         p_titulo VARCHAR,
@@ -66,5 +70,22 @@ CREATE OR REPLACE PACKAGE BiblioTK AS
         p_id_edicion VARCHAR,
         p_numero INTEGER)
     RETURN INTEGER;
+
+    -- ########
+    -- OPCIONAL
+    -- ########
+
+    -- EJERCICIO 15         (29)
+    FUNCTION apertura_prestamo(
+        p_id_socio CHAR, 
+        p_id_ejemplar CHAR, 
+        p_numero_ejemplar INTEGER
+    ) RETURN CHAR;
+
+    -- EJERCICIO 16         (30)
+    FUNCTION cierre_prestamo(
+        p_id_prestamo CHAR
+    ) RETURN INTEGER;
+
 END;
 /
